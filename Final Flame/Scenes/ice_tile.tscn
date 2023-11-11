@@ -21,6 +21,7 @@ texture = ExtResource("1_d2vp2")
 shape = SubResource("RectangleShape2D_gpvyc")
 
 [node name="Meltbox" type="Area2D" parent="."]
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Meltbox"]
 shape = SubResource("RectangleShape2D_hl07f")
