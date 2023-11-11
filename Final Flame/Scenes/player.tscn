@@ -1,10 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://j5wnleimpye6"]
+[gd_scene load_steps=19 format=3 uid="uid://j5wnleimpye6"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_qg6o6"]
 [ext_resource type="Texture2D" uid="uid://b64e441b4neq4" path="res://Assets/Player/warrior-spritesheet.png" id="2_a27b7"]
 [ext_resource type="AudioStream" uid="uid://xoyu5a1k5yfd" path="res://Assets/Sounds/fire-burning.wav" id="3_gmh8l"]
 [ext_resource type="Script" path="res://Scripts/fire-sound.gd" id="4_yi5k6"]
 [ext_resource type="AudioStream" uid="uid://d4anghjvvaeky" path="res://Assets/Sounds/piano-loop.mp3" id="5_dbcip"]
+[ext_resource type="AudioStream" uid="uid://8jmloi01f4kf" path="res://Assets/Sounds/footstep.ogg" id="6_ucdw5"]
 [ext_resource type="Script" path="res://Scripts/footstep.gd" id="7_5v7tx"]
 [ext_resource type="AudioStream" uid="uid://2ofj5upw6gt6" path="res://Assets/Sounds/jump.wav" id="8_157nj"]
 
@@ -195,7 +196,8 @@ autoplay = true
 script = ExtResource("4_yi5k6")
 
 [node name="footstep" type="AudioStreamPlayer" parent="."]
-volume_db = -4.685
+stream = ExtResource("6_ucdw5")
+volume_db = -36.455
 script = ExtResource("7_5v7tx")
 
 [node name="jump" type="AudioStreamPlayer" parent="."]

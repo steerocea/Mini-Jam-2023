@@ -22,6 +22,7 @@ var character_sprite: Sprite2D = null
 var footstep_sound : AudioStreamPlayer = null
 var jump_sound : AudioStreamPlayer = null
 var player_is_dead = false
+var footstep_playing = false
 
 func _ready():
 	player_is_dead = false
@@ -38,6 +39,8 @@ func _ready():
 		
 	footstep_sound = $footstep
 	jump_sound = $jump
+	
+	footstep_sound.connect("finished", _on_FootstepSound_finished)
 
 func _physics_process(delta):
 	if !is_on_floor():
@@ -115,10 +118,12 @@ func _physics_process(delta):
 			character_sprite.scale.x = 1
 			character_sprite.position.x = 15
 			animation_player.play("Run-Right")
+			play_footstep_sound()
 		PlayerState.RUNLEFT:
 			character_sprite.scale.x = -1
 			character_sprite.position.x = -15
 			animation_player.play("Run-Right")
+			play_footstep_sound()
 		PlayerState.JUMP:
 			animation_player.play("Jump")
 		PlayerState.SLIDE:
@@ -144,6 +149,14 @@ func show_game_over_screen():
 
 	# Add the game over root to the scene tree
 	get_tree().get_root().add_child(game_over_root)
+	
+func play_footstep_sound():
+	if !footstep_playing:
+		footstep_sound.play()
+		footstep_playing = true
+		
+func _on_FootstepSound_finished():
+	footstep_playing = false
 
 
 

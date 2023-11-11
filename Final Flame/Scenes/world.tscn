@@ -11,6 +11,9 @@ size = Vector2(6.88883, 20)
 
 [node name="Player" parent="." instance=ExtResource("1_wpy14")]
 position = Vector2(557, 263)
+speed = 300
+gravity = 30
+jump_force = 700
 
 [node name="Platform" type="StaticBody2D" parent="."]
 
