@@ -11,6 +11,7 @@ enum PlayerState {
 	RUNRIGHT,
 	RUNLEFT,
 	JUMP,
+	SLIDE,
 }
 
 var state: PlayerState = PlayerState.IDLE
@@ -49,6 +50,10 @@ func _physics_process(delta):
 		if is_on_floor():
 			velocity.y = -jump_force
 			state = PlayerState.JUMP
+	elif Input.get_action_strength("slide") > 0:
+		if is_on_floor():
+			speed = 500
+			state = PlayerState.SLIDE
 	elif ((Input.get_action_strength("walk_left") > 0) && (Input.get_action_strength("run_left") == 0)):
 		if Input.get_action_strength("sprint") > 0:
 			speed = 400
@@ -102,3 +107,5 @@ func _physics_process(delta):
 			animation_player.play("Run-Right")
 		PlayerState.JUMP:
 			animation_player.play("Jump")
+		PlayerState.SLIDE:
+			animation_player.play("Slide-Right")
