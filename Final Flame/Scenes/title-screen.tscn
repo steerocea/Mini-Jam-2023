@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://dkay25sawdi2f"]
+
+[ext_resource type="Script" path="res://Scripts/title-screen.gd" id="1_efilt"]
+[ext_resource type="Texture2D" uid="uid://dh6d4n1vt5fuh" path="res://Assets/UI/title-screen.png" id="1_foppe"]
+[ext_resource type="Texture2D" uid="uid://b0ukrk8tcbfil" path="res://Assets/UI/button-img.png" id="2_fgwiq"]
+
+[sub_resource type="Theme" id="Theme_3k35w"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_efilt")
+
+[node name="Title-screen" type="Sprite2D" parent="."]
+position = Vector2(577, 323)
+scale = Vector2(3.03553, 3.02147)
+texture = ExtResource("1_foppe")
+
+[node name="start-button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 752.0
+offset_top = 406.0
+offset_right = 798.0
+offset_bottom = 437.0
+scale = Vector2(5.54033, 4.70064)
+theme = SubResource("Theme_3k35w")
+text = "Start
+"
+
+[node name="Sprite2D" type="Sprite2D" parent="start-button"]
+visible = false
+position = Vector2(22.9228, 14.1451)
+scale = Vector2(0.348198, 0.398867)
+texture = ExtResource("2_fgwiq")
+
+[connection signal="pressed" from="start-button" to="." method="_on_startbutton_pressed"]
