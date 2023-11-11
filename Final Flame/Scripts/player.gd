@@ -38,10 +38,12 @@ func _physics_process(delta):
 			speed = 200
 			horizontal_direction = 1
 			character_sprite.scale.x = 1
+			character_sprite.position.x = 15
 		elif (Input.get_action_strength("walk_left") > 0):
 			speed = 200
 			horizontal_direction = -1
 			character_sprite.scale.x = -1
+			character_sprite.position.x = -15
 		
 	elif Input.is_action_just_pressed("jump"):
 		if is_on_floor():
@@ -84,15 +86,19 @@ func _physics_process(delta):
 			animation_player.play("Idle")
 		PlayerState.WALKRIGHT:
 			character_sprite.scale.x = 1
+			character_sprite.position.x = 15
 			animation_player.play("Walk-Right")
 		PlayerState.WALKLEFT:
 			character_sprite.scale.x = -1
+			character_sprite.position.x = -15
 			animation_player.play("Walk-Right")
 		PlayerState.RUNRIGHT:
 			character_sprite.scale.x = 1
+			character_sprite.position.x = 15
 			animation_player.play("Run-Right")
 		PlayerState.RUNLEFT:
 			character_sprite.scale.x = -1
+			character_sprite.position.x = -15
 			animation_player.play("Run-Right")
 		PlayerState.JUMP:
 			animation_player.play("Jump")
