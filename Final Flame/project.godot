@@ -15,6 +15,10 @@ run/main_scene="res://Scenes/title-screen.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+SceneDictionary="*res://Scripts/Autoloads/SceneDictionary.gd"
+
 [input]
 
 walk_left={
