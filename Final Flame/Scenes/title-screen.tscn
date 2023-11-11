@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dkay25sawdi2f"]
+[gd_scene load_steps=6 format=3 uid="uid://bikybaph6hqxn"]
 
 [ext_resource type="Script" path="res://Scripts/title-screen.gd" id="1_efilt"]
 [ext_resource type="Texture2D" uid="uid://nv0wwnnk0n34" path="res://Assets/UI/finalflame-title.png" id="2_vd0fb"]
@@ -31,5 +31,5 @@ texture_normal = ExtResource("3_v7sjd")
 texture_pressed = ExtResource("4_u07qb")
 texture_hover = ExtResource("5_12cae")
 
-[connection signal="pressed" from="start-button" to="." method="_on_startbutton_pressed"]
 [connection signal="pressed" from="start-button" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="start-button" to="." method="_on_startbutton_pressed"]

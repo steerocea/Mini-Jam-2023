@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://dww32252amosa"]
+
+[ext_resource type="Script" path="res://Scripts/ice_tile.gd" id="1_bx6qf"]
+[ext_resource type="Texture2D" uid="uid://6y7ovsurcnh6" path="res://Assets/Tiles/Standalone_Ice_Tile.png" id="1_d2vp2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gpvyc"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hl07f"]
+size = Vector2(18, 18)
+
+[node name="Ice_Tile" type="Node2D"]
+script = ExtResource("1_bx6qf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_d2vp2")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_gpvyc")
+
+[node name="Meltbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Meltbox"]
+shape = SubResource("RectangleShape2D_hl07f")
