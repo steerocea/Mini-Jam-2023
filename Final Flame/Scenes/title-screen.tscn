@@ -77,5 +77,5 @@ volume_db = -21.55
 autoplay = true
 script = ExtResource("10_s5hfh")
 
-[connection signal="pressed" from="start-button" to="." method="_on_startbutton_pressed"]
 [connection signal="pressed" from="start-button" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="start-button" to="." method="_on_startbutton_pressed"]

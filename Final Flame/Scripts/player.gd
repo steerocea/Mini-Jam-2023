@@ -19,6 +19,8 @@ var state: PlayerState = PlayerState.IDLE
 var horizontal_direction = 0
 var animation_player: AnimationPlayer = null
 var character_sprite: Sprite2D = null
+var footstep_sound : AudioStreamPlayer = null
+var jump_sound : AudioStreamPlayer = null
 var player_is_dead = false
 
 func _ready():
@@ -33,6 +35,9 @@ func _ready():
 	if character_sprite == null:
 		print("Error: Sprite not found.")
 		return
+		
+	footstep_sound = $footstep
+	jump_sound = $jump
 
 func _physics_process(delta):
 	if !is_on_floor():
@@ -54,6 +59,7 @@ func _physics_process(delta):
 		if is_on_floor():
 			velocity.y = -jump_force
 			state = PlayerState.JUMP
+			jump_sound.play()
 	#place holder
 	elif Input.is_action_just_pressed("death"):
 		state = PlayerState.DEATH
