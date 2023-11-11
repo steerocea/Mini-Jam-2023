@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dkay25sawdi2f"]
+[gd_scene load_steps=12 format=3 uid="uid://dkay25sawdi2f"]
 
 [ext_resource type="Script" path="res://Scripts/title-screen.gd" id="1_efilt"]
 [ext_resource type="Texture2D" uid="uid://dnosavie1j43f" path="res://Assets/UI/startbutton-norm.png" id="3_v7sjd"]
@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://wmxrgyt76b8t" path="res://Assets/UI/Background/back2.png" id="6_n371q"]
 [ext_resource type="Texture2D" uid="uid://d07i7kfvjxxe7" path="res://Assets/UI/Background/back3.png" id="7_6to53"]
 [ext_resource type="Texture2D" uid="uid://o7rj38nd3mxf" path="res://Assets/UI/Background/back4.png" id="8_qlako"]
+[ext_resource type="AudioStream" uid="uid://df1rbta2aokae" path="res://Assets/Sounds/guitar-loop.mp3" id="9_y0bgv"]
+[ext_resource type="Script" path="res://Scripts/menu-music.gd" id="10_s5hfh"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8rvil"]
 load_path = "res://.godot/imported/finalflame-title.png-5cf1c4c011e3c465835e2ade24a4c465.ctex"
@@ -68,6 +70,12 @@ scale = Vector2(3.8, 3.8)
 
 [node name="Sprite2D" type="Sprite2D" parent="Node2D/ParallaxBackground/ParallaxLayer4"]
 texture = ExtResource("8_qlako")
+
+[node name="menu-music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_y0bgv")
+volume_db = -21.55
+autoplay = true
+script = ExtResource("10_s5hfh")
 
 [connection signal="pressed" from="start-button" to="." method="_on_startbutton_pressed"]
 [connection signal="pressed" from="start-button" to="." method="_on_texture_button_pressed"]

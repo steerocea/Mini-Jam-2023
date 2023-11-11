@@ -1,7 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://j5wnleimpye6"]
+[gd_scene load_steps=16 format=3 uid="uid://j5wnleimpye6"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_qg6o6"]
 [ext_resource type="Texture2D" uid="uid://b64e441b4neq4" path="res://Assets/Player/warrior-spritesheet.png" id="2_a27b7"]
+[ext_resource type="AudioStream" uid="uid://xoyu5a1k5yfd" path="res://Assets/Sounds/fire-burning.wav" id="3_gmh8l"]
+[ext_resource type="Script" path="res://Scripts/fire-sound.gd" id="4_yi5k6"]
+[ext_resource type="AudioStream" uid="uid://d4anghjvvaeky" path="res://Assets/Sounds/piano-loop.mp3" id="5_dbcip"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_025wv"]
 radius = 6.64894
@@ -160,7 +163,7 @@ scale = Vector2(1.3, 1.406)
 texture = ExtResource("2_a27b7")
 hframes = 16
 vframes = 25
-frame = 394
+frame = 48
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1.5, -33.5)
@@ -176,3 +179,15 @@ enabled = false
 libraries = {
 "": SubResource("AnimationLibrary_6ukbh")
 }
+
+[node name="fire-sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_gmh8l")
+volume_db = -2.811
+autoplay = true
+script = ExtResource("4_yi5k6")
+
+[node name="piano-loop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_dbcip")
+volume_db = -23.423
+autoplay = true
+script = ExtResource("4_yi5k6")

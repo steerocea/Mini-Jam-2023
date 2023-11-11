@@ -6,6 +6,7 @@ var melting:bool = false
 
 var meltbox:Area2D
 var sprite:Sprite2D
+var ice_sound:AudioStreamPlayer
 
 
 # Called when the node enters the scene tree for the first time.
@@ -13,12 +14,14 @@ func _ready():
 	meltbox = $Meltbox
 	meltbox.body_entered.connect(_on_meltbox_entered)
 	sprite = $Sprite2D
+	ice_sound = $IceSound
 	pass # Replace with function body.
 
 func _on_meltbox_entered(_body):
 	if(!melting):
 		print("Beginning melt")
 		melting = true
+		ice_sound.play()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
