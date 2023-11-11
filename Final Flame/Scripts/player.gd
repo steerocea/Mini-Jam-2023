@@ -15,6 +15,19 @@ enum PlayerState {
 
 var state: PlayerState = PlayerState.IDLE
 var horizontal_direction = 0
+var animation_player: AnimationPlayer = null
+var character_sprite: Sprite2D = null
+
+func _ready():
+	animation_player = $AnimationPlayer  # Adjust the path based on the actual node hierarchy
+	if animation_player == null:
+		print("Error: AnimationPlayer not found.")
+		return
+		
+	character_sprite = $Sprite2D  # Adjust the path based on the actual node hierarchy
+	if character_sprite == null:
+		print("Error: Sprite not found.")
+		return
 
 func _physics_process(delta):
 	if !is_on_floor():
@@ -60,14 +73,18 @@ func _physics_process(delta):
 	
 	match state:
 		PlayerState.IDLE:
-			pass
+			animation_player.play("Idle")
 		PlayerState.WALKRIGHT:
-			pass
+			character_sprite.scale.x = 1
+			animation_player.play("Walk-Right")
 		PlayerState.WALKLEFT:
-			pass
+			character_sprite.scale.x = -1
+			animation_player.play("Walk-Right")
 		PlayerState.RUNRIGHT:
-			pass
+			character_sprite.scale.x = 1
+			animation_player.play("Run-Right")
 		PlayerState.RUNLEFT:
-			pass
+			character_sprite.scale.x = -1
+			animation_player.play("Run-Right")
 		PlayerState.JUMP:
-			pass
+			animation_player.play("Jump")
