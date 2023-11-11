@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=4 format=3 uid="uid://j5wnleimpye6"]
+=======
+[gd_scene load_steps=7 format=3 uid="uid://j5wnleimpye6"]
+>>>>>>> Stashed changes
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_qg6o6"]
 [ext_resource type="Texture2D" uid="uid://chw1htoskx6gy" path="res://Assets/Backgrounds/BackgroundBluedummy.png" id="2_00v2h"]
@@ -6,6 +10,46 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eaexm"]
 size = Vector2(48.75, 67)
 
+<<<<<<< Updated upstream
+=======
+[sub_resource type="Animation" id="Animation_qu5rk"]
+resource_name = "Walk-Right"
+length = 20.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 5]
+}
+
+[sub_resource type="Animation" id="Animation_fm22b"]
+resource_name = "Idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath("Sprite2D:hframes")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6ukbh"]
+_data = {
+"Idle": SubResource("Animation_fm22b"),
+"Walk-Right": SubResource("Animation_qu5rk")
+}
+
+>>>>>>> Stashed changes
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_qg6o6")
 
