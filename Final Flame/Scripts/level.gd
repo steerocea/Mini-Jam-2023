@@ -19,8 +19,7 @@ func _ready():
 	assert(camera,"No Camera assigned")
 	tile_size = tilemap.tile_set.tile_size
 	do_cell_substitutions()
-	set_camera_limits()
-	add_boundaries()
+	set_boundaries()
 	pass # Replace with function body.
 
 func do_cell_substitutions():
@@ -66,22 +65,19 @@ func add_win_collisions(win_layer_index:int):
 		pass
 	tilemap.set_layer_enabled(win_layer_index,false)
 
-func set_camera_limits():
+func set_boundaries():
 	var map_limits = tilemap.get_used_rect()
 	var map_cellsize = tilemap.tile_set.tile_size
-	camera.limit_left = map_limits.position.x * map_cellsize.x
-	camera.limit_right = map_limits.end.x * map_cellsize.x
-	camera.limit_top = map_limits.position.y * map_cellsize.y
-	camera.limit_bottom = map_limits.end.y * map_cellsize.y
-	pass
-
-func add_boundaries():
-	var map_limits = tilemap.get_used_rect()
-	var map_cellsize = tilemap.tile_set.tile_size
+	
 	var left = map_limits.position.x * map_cellsize.x
 	var right = map_limits.end.x * map_cellsize.x
 	var top = map_limits.position.y * map_cellsize.y
 	var bottom = map_limits.end.y * map_cellsize.y
+	
+	camera.limit_left = left
+	camera.limit_right = right
+	camera.limit_top = top
+	camera.limit_bottom = bottom
 	
 	var barrier_node = StaticBody2D.new()
 	
@@ -104,9 +100,6 @@ func add_boundaries():
 	barrier_node.add_child(barrier_shape_right)
 	
 	self.add_child(barrier_node)
-	
-	
-	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
