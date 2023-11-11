@@ -1,9 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://dkay25sawdi2f"]
+[gd_scene load_steps=10 format=3 uid="uid://dkay25sawdi2f"]
 
 [ext_resource type="Script" path="res://Scripts/title-screen.gd" id="1_efilt"]
 [ext_resource type="Texture2D" uid="uid://dnosavie1j43f" path="res://Assets/UI/startbutton-norm.png" id="3_v7sjd"]
 [ext_resource type="Texture2D" uid="uid://b6rdva2a3e2ss" path="res://Assets/UI/startbutton-click.png" id="4_u07qb"]
+[ext_resource type="Texture2D" uid="uid://jaojffjavxmp" path="res://Assets/UI/Background/back1.png" id="5_6d8x4"]
 [ext_resource type="Texture2D" uid="uid://jechle428xxc" path="res://Assets/UI/startbutton-hover.png" id="5_12cae"]
+[ext_resource type="Texture2D" uid="uid://wmxrgyt76b8t" path="res://Assets/UI/Background/back2.png" id="6_n371q"]
+[ext_resource type="Texture2D" uid="uid://d07i7kfvjxxe7" path="res://Assets/UI/Background/back3.png" id="7_6to53"]
+[ext_resource type="Texture2D" uid="uid://o7rj38nd3mxf" path="res://Assets/UI/Background/back4.png" id="8_qlako"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8rvil"]
 load_path = "res://.godot/imported/finalflame-title.png-5cf1c4c011e3c465835e2ade24a4c465.ctex"
@@ -18,8 +22,8 @@ grow_vertical = 2
 script = ExtResource("1_efilt")
 
 [node name="Title-screen" type="Sprite2D" parent="."]
-position = Vector2(577, 323)
-scale = Vector2(1.02224, 1.01751)
+position = Vector2(572, 350)
+scale = Vector2(0.969103, 0.964618)
 texture = SubResource("CompressedTexture2D_8rvil")
 
 [node name="start-button" type="TextureButton" parent="."]
@@ -32,6 +36,38 @@ scale = Vector2(1.4701, 1.4701)
 texture_normal = ExtResource("3_v7sjd")
 texture_pressed = ExtResource("4_u07qb")
 texture_hover = ExtResource("5_12cae")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Node2D"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Node2D/ParallaxBackground"]
+position = Vector2(590, 320)
+scale = Vector2(3.8, 3.8)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/ParallaxBackground/ParallaxLayer"]
+texture = ExtResource("5_6d8x4")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="Node2D/ParallaxBackground"]
+position = Vector2(590, 320)
+scale = Vector2(3.8, 3.8)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/ParallaxBackground/ParallaxLayer2"]
+texture = ExtResource("6_n371q")
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="Node2D/ParallaxBackground"]
+position = Vector2(590, 320)
+scale = Vector2(3.8, 3.8)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/ParallaxBackground/ParallaxLayer3"]
+texture = ExtResource("7_6to53")
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="Node2D/ParallaxBackground"]
+position = Vector2(590, 320)
+scale = Vector2(3.8, 3.8)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/ParallaxBackground/ParallaxLayer4"]
+texture = ExtResource("8_qlako")
 
 [connection signal="pressed" from="start-button" to="." method="_on_startbutton_pressed"]
 [connection signal="pressed" from="start-button" to="." method="_on_texture_button_pressed"]

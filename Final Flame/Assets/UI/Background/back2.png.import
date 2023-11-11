@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c1pmbjvgtiwe6"
-path="res://.godot/imported/finalflame-title.png-5cf1c4c011e3c465835e2ade24a4c465.ctex"
+uid="uid://wmxrgyt76b8t"
+path="res://.godot/imported/back2.png-898af1aa2cfc8ec008492a9b70d73a0a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/UI/finalflame-title.png"
-dest_files=["res://.godot/imported/finalflame-title.png-5cf1c4c011e3c465835e2ade24a4c465.ctex"]
+source_file="res://Assets/UI/Background/back2.png"
+dest_files=["res://.godot/imported/back2.png-898af1aa2cfc8ec008492a9b70d73a0a.ctex"]
 
 [params]
 
