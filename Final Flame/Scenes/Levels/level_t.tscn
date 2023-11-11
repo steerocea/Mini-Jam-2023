@@ -4,12 +4,14 @@
 [ext_resource type="TileSet" uid="uid://byh02g1bhfo0l" path="res://Assets/Tiles/level_set.tres" id="1_4xogo"]
 [ext_resource type="PackedScene" uid="uid://j5wnleimpye6" path="res://Scenes/player.tscn" id="2_j36u0"]
 
-[node name="LevelT" type="Node2D" node_paths=PackedStringArray("tilemap")]
+[node name="LevelT" type="Node2D" node_paths=PackedStringArray("tilemap", "death_zone")]
 script = ExtResource("1_1u11t")
 tilemap = NodePath("Level_Tiles")
+death_zone = NodePath("Death_Zone")
 
 [node name="Player" parent="." instance=ExtResource("2_j36u0")]
 position = Vector2(320, 272)
+floor_snap_length = 2.0
 
 [node name="Level_Tiles" type="TileMap" parent="."]
 texture_filter = 1
@@ -25,3 +27,12 @@ layer_1/y_sort_enabled = false
 layer_1/y_sort_origin = 0
 layer_1/z_index = 0
 layer_1/tile_data = PackedInt32Array(589845, 720897, 3, 589846, 720897, 3, 589847, 720897, 3, 589848, 720897, 3, 589849, 720897, 3, 589850, 720897, 3, 589859, 720897, 3, 589860, 720897, 3, 589861, 720897, 3, 589862, 720897, 3, 589863, 720897, 3, 589864, 720897, 3, 589865, 720897, 3, 589866, 720897, 3, 589867, 720897, 3, 589868, 720897, 3, 589869, 720897, 3, 589874, 720897, 3, 589875, 720897, 3, 589879, 720897, 3, 589881, 720897, 3, 589882, 720897, 3, 589883, 720897, 3, 589885, 720897, 3, 589886, 720897, 3, 589887, 720897, 3)
+layer_2/name = "death"
+layer_2/enabled = true
+layer_2/modulate = Color(1, 1, 1, 1)
+layer_2/y_sort_enabled = false
+layer_2/y_sort_origin = 0
+layer_2/z_index = 0
+layer_2/tile_data = PackedInt32Array(1245197, 720897, 8, 1245198, 720897, 8, 1245199, 720897, 8, 1245200, 720897, 8, 1245201, 720897, 8, 1245202, 720897, 8, 1245203, 720897, 8, 1245204, 720897, 8, 1245205, 720897, 8, 1245206, 720897, 8, 1245207, 720897, 8, 1245208, 720897, 8, 1245209, 720897, 8, 1245210, 720897, 8, 1245211, 720897, 8, 1245212, 720897, 8, 1245213, 720897, 8, 1245214, 720897, 8, 1245215, 720897, 8, 1245216, 720897, 8, 1245217, 720897, 8, 1245218, 720897, 8, 1245219, 720897, 8, 1245220, 720897, 8, 1245221, 720897, 8, 1245222, 720897, 8, 1245223, 720897, 8, 1245224, 720897, 8, 1245225, 720897, 8, 1245226, 720897, 8, 1245227, 720897, 8, 1245228, 720897, 8, 1245229, 720897, 8, 1245230, 720897, 8, 1245231, 720897, 8, 1245232, 720897, 8, 1245233, 720897, 8, 1245234, 720897, 8, 1245235, 720897, 8, 1245236, 720897, 8, 1245237, 720897, 8, 1245238, 720897, 8, 1245239, 720897, 8, 1245240, 720897, 8, 1245241, 720897, 8, 1245242, 720897, 8, 1245243, 720897, 8, 1245244, 720897, 8, 1245245, 720897, 8, 1245246, 720897, 8, 1245247, 720897, 8)
+
+[node name="Death_Zone" type="Area2D" parent="."]
