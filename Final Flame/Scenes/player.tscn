@@ -1,17 +1,11 @@
-<<<<<<< Updated upstream
-[gd_scene load_steps=4 format=3 uid="uid://j5wnleimpye6"]
-=======
-[gd_scene load_steps=7 format=3 uid="uid://j5wnleimpye6"]
->>>>>>> Stashed changes
+[gd_scene load_steps=6 format=3 uid="uid://j5wnleimpye6"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_qg6o6"]
-[ext_resource type="Texture2D" uid="uid://chw1htoskx6gy" path="res://Assets/Backgrounds/BackgroundBluedummy.png" id="2_00v2h"]
+[ext_resource type="Texture2D" uid="uid://br5ncurb54iso" path="res://Assets/Player/firewarrior-spritesheet.png" id="2_5fyi8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eaexm"]
 size = Vector2(48.75, 67)
 
-<<<<<<< Updated upstream
-=======
 [sub_resource type="Animation" id="Animation_qu5rk"]
 resource_name = "Walk-Right"
 length = 20.0
@@ -28,35 +22,20 @@ tracks/0/keys = {
 "values": [0, 5]
 }
 
-[sub_resource type="Animation" id="Animation_fm22b"]
-resource_name = "Idle"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = false
-tracks/0/path = NodePath("Sprite2D:hframes")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.2),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [8]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6ukbh"]
 _data = {
-"Idle": SubResource("Animation_fm22b"),
 "Walk-Right": SubResource("Animation_qu5rk")
 }
 
->>>>>>> Stashed changes
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_qg6o6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-1, -34)
-scale = Vector2(0.121038, 0.371899)
-texture = ExtResource("2_00v2h")
+scale = Vector2(1.28202, 1.38847)
+texture = ExtResource("2_5fyi8")
+hframes = 20
+vframes = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1.5, -33.5)
@@ -65,3 +44,8 @@ shape = SubResource("RectangleShape2D_eaexm")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -133)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6ukbh")
+}
