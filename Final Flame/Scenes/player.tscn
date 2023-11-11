@@ -1,10 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://j5wnleimpye6"]
+[gd_scene load_steps=13 format=3 uid="uid://j5wnleimpye6"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_qg6o6"]
 [ext_resource type="Texture2D" uid="uid://b64e441b4neq4" path="res://Assets/Player/warrior-spritesheet.png" id="2_a27b7"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_eaexm"]
-size = Vector2(48.75, 67)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_025wv"]
+height = 63.5107
 
 [sub_resource type="Animation" id="Animation_kcq0v"]
 resource_name = "Dash-Right"
@@ -122,9 +122,26 @@ tracks/0/keys = {
 "values": [32, 33, 34, 35, 36, 37, 38, 39]
 }
 
+[sub_resource type="Animation" id="Animation_pqnbb"]
+resource_name = "Death"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [384, 384, 385, 386, 387, 388, 389, 390, 391, 392, 393, 394]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6ukbh"]
 _data = {
 "Dash-Right": SubResource("Animation_kcq0v"),
+"Death": SubResource("Animation_pqnbb"),
 "Idle": SubResource("Animation_qst22"),
 "Jump": SubResource("Animation_n0a28"),
 "Roll-Right": SubResource("Animation_gckiy"),
@@ -142,12 +159,12 @@ scale = Vector2(1.3, 1.406)
 texture = ExtResource("2_a27b7")
 hframes = 16
 vframes = 25
-frame = 48
+frame = 394
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1.5, -33.5)
-scale = Vector2(0.8, 1.02345)
-shape = SubResource("RectangleShape2D_eaexm")
+scale = Vector2(1.88, 1.02345)
+shape = SubResource("CapsuleShape2D_025wv")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -133)

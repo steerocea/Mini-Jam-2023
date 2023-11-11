@@ -12,14 +12,18 @@ enum PlayerState {
 	RUNLEFT,
 	JUMP,
 	SLIDE,
+	DEATH,
 }
 
 var state: PlayerState = PlayerState.IDLE
 var horizontal_direction = 0
 var animation_player: AnimationPlayer = null
 var character_sprite: Sprite2D = null
+var player_is_dead = false
 
 func _ready():
+	player_is_dead = false
+	
 	animation_player = $AnimationPlayer  # Adjust the path based on the actual node hierarchy
 	if animation_player == null:
 		print("Error: AnimationPlayer not found.")
@@ -50,6 +54,9 @@ func _physics_process(delta):
 		if is_on_floor():
 			velocity.y = -jump_force
 			state = PlayerState.JUMP
+	#place holder
+	elif Input.is_action_just_pressed("death"):
+		state = PlayerState.DEATH
 	elif Input.get_action_strength("slide") > 0:
 		if is_on_floor():
 			speed = 500
@@ -79,9 +86,10 @@ func _physics_process(delta):
 		horizontal_direction = 1
 		state = PlayerState.RUNRIGHT
 	else:
-		speed = 0
-		horizontal_direction = 0
-		state = PlayerState.IDLE
+		if !player_is_dead:
+			speed = 0
+			horizontal_direction = 0
+			state = PlayerState.IDLE
 		
 	velocity.x = speed * horizontal_direction
 	move_and_slide()
@@ -109,3 +117,27 @@ func _physics_process(delta):
 			animation_player.play("Jump")
 		PlayerState.SLIDE:
 			animation_player.play("Slide-Right")
+		PlayerState.DEATH:
+			# Pause the game
+			#get_tree().paused = true
+
+			# Play the death animation
+			animation_player.play("Death")
+			
+			player_is_dead = true
+			
+			#show_game_over_screen()
+
+# Function to show the game over screen
+func show_game_over_screen():
+	# Load the game over scene
+	var game_over_instance = load("res://Scenes/game-over.tscn")
+
+	# Get the root node (CanvasLayer or Control) of the game over scene
+	var game_over_root: Control = game_over_instance  # Adjust this if your root node has a different name or type
+
+	# Add the game over root to the scene tree
+	get_tree().get_root().add_child(game_over_root)
+
+
+
