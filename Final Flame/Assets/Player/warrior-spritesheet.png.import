@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://br5ncurb54iso"
-path="res://.godot/imported/firewarrior-spritesheet.png-b989648f94642d0a04da1074cb079893.ctex"
+uid="uid://b64e441b4neq4"
+path="res://.godot/imported/warrior-spritesheet.png-1c36d852c6d7616fd793ececd37f4853.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Player/firewarrior-spritesheet.png"
-dest_files=["res://.godot/imported/firewarrior-spritesheet.png-b989648f94642d0a04da1074cb079893.ctex"]
+source_file="res://Assets/Player/warrior-spritesheet.png"
+dest_files=["res://.godot/imported/warrior-spritesheet.png-1c36d852c6d7616fd793ececd37f4853.ctex"]
 
 [params]
 

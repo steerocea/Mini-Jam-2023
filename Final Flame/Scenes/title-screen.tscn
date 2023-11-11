@@ -1,10 +1,12 @@
 [gd_scene load_steps=6 format=3 uid="uid://bikybaph6hqxn"]
 
 [ext_resource type="Script" path="res://Scripts/title-screen.gd" id="1_efilt"]
-[ext_resource type="Texture2D" uid="uid://nv0wwnnk0n34" path="res://Assets/UI/finalflame-title.png" id="2_vd0fb"]
 [ext_resource type="Texture2D" uid="uid://dnosavie1j43f" path="res://Assets/UI/startbutton-norm.png" id="3_v7sjd"]
 [ext_resource type="Texture2D" uid="uid://b6rdva2a3e2ss" path="res://Assets/UI/startbutton-click.png" id="4_u07qb"]
 [ext_resource type="Texture2D" uid="uid://jechle428xxc" path="res://Assets/UI/startbutton-hover.png" id="5_12cae"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8rvil"]
+load_path = "res://.godot/imported/finalflame-title.png-5cf1c4c011e3c465835e2ade24a4c465.ctex"
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -18,7 +20,7 @@ script = ExtResource("1_efilt")
 [node name="Title-screen" type="Sprite2D" parent="."]
 position = Vector2(577, 323)
 scale = Vector2(1.02224, 1.01751)
-texture = ExtResource("2_vd0fb")
+texture = SubResource("CompressedTexture2D_8rvil")
 
 [node name="start-button" type="TextureButton" parent="."]
 layout_mode = 0
