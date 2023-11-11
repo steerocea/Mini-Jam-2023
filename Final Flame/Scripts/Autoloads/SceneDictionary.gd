@@ -5,7 +5,8 @@ extends Node
 
 var scene_dictionary:Dictionary = {
 	"Level_T": preload("res://Scenes/Levels/level_t.tscn"),
-	"title": preload("res://Scenes/title-screen.tscn")
+	"title": preload("res://Scenes/title-screen.tscn"),
+	"game-over": preload("res://Scenes/game-over.tscn")
 	}
 
 func change_scene(scene_key:String):

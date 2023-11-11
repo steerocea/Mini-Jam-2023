@@ -4,7 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://b64e441b4neq4" path="res://Assets/Player/warrior-spritesheet.png" id="2_a27b7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_025wv"]
-height = 63.5107
+radius = 6.64894
+height = 65.4649
 
 [sub_resource type="Animation" id="Animation_kcq0v"]
 resource_name = "Dash-Right"
@@ -20,6 +21,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [48, 49, 50, 51, 52, 53, 54]
+}
+
+[sub_resource type="Animation" id="Animation_pqnbb"]
+resource_name = "Death"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [384, 384, 385, 386, 387, 388, 389, 390, 391, 392, 393, 394]
 }
 
 [sub_resource type="Animation" id="Animation_qst22"]
@@ -120,22 +137,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [32, 33, 34, 35, 36, 37, 38, 39]
-}
-
-[sub_resource type="Animation" id="Animation_pqnbb"]
-resource_name = "Death"
-length = 1.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [384, 384, 385, 386, 387, 388, 389, 390, 391, 392, 393, 394]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6ukbh"]
