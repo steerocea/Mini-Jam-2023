@@ -150,7 +150,9 @@ scale = Vector2(0.8, 1.02345)
 shape = SubResource("RectangleShape2D_eaexm")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+visible = false
 position = Vector2(0, -133)
+enabled = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

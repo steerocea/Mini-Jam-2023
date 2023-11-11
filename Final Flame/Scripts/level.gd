@@ -7,13 +7,20 @@ extends Node2D
 @export var tilemap:TileMap
 @export var death_zone:Area2D
 @export var win_zone:Area2D
+@export var camera:Camera2D
 var ice_scene:PackedScene = preload("res://Scenes/ice_tile.tscn")
 var tile_size:Vector2i
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	assert(tilemap,"No Tilemap assigned")
+	assert(death_zone,"No Death Zone Area2D assigned")
+	assert(win_zone,"No Win Zone Area2D assigned")
+	assert(camera,"No Camera assigned")
 	tile_size = tilemap.tile_set.tile_size
 	do_cell_substitutions()
+	set_camera_limits()
+	add_boundaries()
 	pass # Replace with function body.
 
 func do_cell_substitutions():
@@ -59,6 +66,47 @@ func add_win_collisions(win_layer_index:int):
 		pass
 	tilemap.set_layer_enabled(win_layer_index,false)
 
+func set_camera_limits():
+	var map_limits = tilemap.get_used_rect()
+	var map_cellsize = tilemap.tile_set.tile_size*2
+	camera.limit_left = map_limits.position.x * map_cellsize.x
+	camera.limit_right = map_limits.end.x * map_cellsize.x
+	camera.limit_top = map_limits.position.y * map_cellsize.y
+	camera.limit_bottom = map_limits.end.y * map_cellsize.y
+	pass
+
+func add_boundaries():
+	var map_limits = tilemap.get_used_rect()
+	var map_cellsize = tilemap.tile_set.tile_size*2
+	var left = map_limits.position.x * map_cellsize.x
+	var right = map_limits.end.x * map_cellsize.x
+	var top = map_limits.position.y * map_cellsize.y
+	var bottom = map_limits.end.y * map_cellsize.y
+	
+	var barrier_node = StaticBody2D.new()
+	
+	var left_segment = SegmentShape2D.new()
+	left_segment.a = Vector2(left,top)
+	left_segment.b = Vector2(left,bottom)
+	
+	var barrier_shape_left = CollisionShape2D.new()
+	barrier_shape_left.shape = left_segment
+	
+	barrier_node.add_child(barrier_shape_left)
+	
+	var right_segment = SegmentShape2D.new()
+	right_segment.a = Vector2(right,top)
+	right_segment.b = Vector2(right,bottom)
+	
+	var barrier_shape_right = CollisionShape2D.new()
+	barrier_shape_right.shape = right_segment
+	
+	barrier_node.add_child(barrier_shape_right)
+	
+	self.add_child(barrier_node)
+	
+	
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
