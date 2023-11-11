@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var speed = 300
 @export var gravity = 30
-@export var jump_force = 1000
+@export var jump_force = 700
 
 enum PlayerState {
 	IDLE,
@@ -34,6 +34,14 @@ func _physics_process(delta):
 		velocity.y += gravity
 		if velocity.y > 1000:
 			velocity.y = 1000
+		if (Input.get_action_strength("walk_right") > 0):
+			speed = 200
+			horizontal_direction = 1
+			character_sprite.scale.x = 1
+		elif (Input.get_action_strength("walk_left") > 0):
+			speed = 200
+			horizontal_direction = -1
+			character_sprite.scale.x = -1
 		
 	elif Input.is_action_just_pressed("jump"):
 		if is_on_floor():
