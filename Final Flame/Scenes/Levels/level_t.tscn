@@ -13,7 +13,6 @@ camera = NodePath("Camera2D")
 
 [node name="Level_Tiles" type="TileMap" parent="."]
 texture_filter = 1
-scale = Vector2(2, 2)
 tile_set = ExtResource("1_4xogo")
 format = 2
 layer_0/name = "static"
@@ -47,11 +46,11 @@ scale = Vector2(0.5, 0.5)
 scale = Vector2(0.5, 0.5)
 
 [node name="Player" parent="." instance=ExtResource("2_j36u0")]
-position = Vector2(352, 272)
+position = Vector2(320, 272)
 floor_snap_length = 2.0
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../Camera2D")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(352, 272)
+position = Vector2(320, 272)

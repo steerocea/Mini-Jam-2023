@@ -68,7 +68,7 @@ func add_win_collisions(win_layer_index:int):
 
 func set_camera_limits():
 	var map_limits = tilemap.get_used_rect()
-	var map_cellsize = tilemap.tile_set.tile_size*2
+	var map_cellsize = tilemap.tile_set.tile_size
 	camera.limit_left = map_limits.position.x * map_cellsize.x
 	camera.limit_right = map_limits.end.x * map_cellsize.x
 	camera.limit_top = map_limits.position.y * map_cellsize.y
@@ -77,7 +77,7 @@ func set_camera_limits():
 
 func add_boundaries():
 	var map_limits = tilemap.get_used_rect()
-	var map_cellsize = tilemap.tile_set.tile_size*2
+	var map_cellsize = tilemap.tile_set.tile_size
 	var left = map_limits.position.x * map_cellsize.x
 	var right = map_limits.end.x * map_cellsize.x
 	var top = map_limits.position.y * map_cellsize.y
