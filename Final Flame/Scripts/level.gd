@@ -6,6 +6,7 @@ extends Node2D
 
 @export var tilemap:TileMap
 @export var death_zone:Area2D
+@export var win_zone:Area2D
 var ice_scene:PackedScene = preload("res://Scenes/ice_tile.tscn")
 var tile_size:Vector2i
 
@@ -21,6 +22,8 @@ func do_cell_substitutions():
 		if tilemap.get_layer_name(i) == "ice" :
 			replace_ice_tiles(i)
 		if tilemap.get_layer_name(i) == "death" :
+			add_death_collisions(i)
+		if tilemap.get_layer_name(i) == "win" :
 			add_death_collisions(i)
 
 func replace_ice_tiles(ice_layer_index:int):
@@ -43,6 +46,18 @@ func add_death_collisions(death_layer_index:int):
 		tilemap.add_child(new_death_node)
 		pass
 	tilemap.set_layer_enabled(death_layer_index,false)
+
+func add_win_collisions(win_layer_index:int):
+	var win_tiles:Array[Vector2i] = tilemap.get_used_cells(win_layer_index)
+	for win_coord in win_tiles:
+		var new_win_node = CollisionShape2D.new()
+		new_win_node.position = tilemap.map_to_local(win_coord)
+		var new_win_shape = RectangleShape2D.new()
+		new_win_shape.size = tile_size
+		new_win_node.shape = new_win_shape
+		tilemap.add_child(new_win_node)
+		pass
+	tilemap.set_layer_enabled(win_layer_index,false)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
