@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+#TODO: Jump buffering
 #TODO: Integrate animations
 #TODO: Walljump knockback input delay
 
@@ -50,12 +51,68 @@ func _ready():
 
 
 func _physics_process(delta):
-	
 	run()
 	#jump does gravity and jumps/walljumps for us: basically handles verticality.
 	jump()
-	
 	move_and_slide()
+
+var input_direction:float = 0
+
+func run():
+	input_direction = 0
+	if Input.is_action_pressed("walk_left"):
+		input_direction -= 1
+	if Input.is_action_pressed("walk_right"):
+		input_direction += 1
+	
+	velocity.x = input_direction*speed
+	
+const coyote_timer:float = 0.3
+var general_coyote_time:float = 0
+var walljump_coyote_time:float = 0
+var walljump_is_right:bool = true
+var has_jump:bool = true
+var has_walljump:bool = true
+
+func jump():
+	#If we're in contact with a wall or floor, refresh jump timers.
+	
+	if is_on_floor():
+		general_coyote_time = 0
+		#only refresh whether we have a jump on touching the ground though.
+		has_jump = true
+		has_walljump = true
+	if is_on_wall() and input_direction != 0:
+		walljump_coyote_time = 0
+		walljump_is_right = get_wall_normal().x > 0
+	if Input.is_action_just_pressed("jump"):
+		if general_coyote_time < coyote_timer and has_jump:
+			velocity.y = -jump_force
+			has_jump = false
+		if walljump_coyote_time < coyote_timer and has_walljump:
+			velocity.y = -jump_force
+			velocity.x = speed * (1 if walljump_is_right else -1)
+			has_walljump = false
+	
+	else:
+		velocity.y += gravity
+
+func _process(delta):
+	update_timers(delta)
+	update_animations()
+
+func update_timers(delta):
+	general_coyote_time += delta
+	walljump_coyote_time += delta
+
+func update_animations():
+	#facing change
+	if(velocity.x < 0):
+		character_sprite.position.x = -15
+		character_sprite.flip_h = true
+	elif(velocity.x > 0):
+		character_sprite.position.x = 15
+		character_sprite.flip_h = false
 	
 	match state:
 		PlayerState.IDLE:
@@ -96,54 +153,6 @@ func _physics_process(delta):
 			player_is_dead = true
 			
 			#show_game_over_screen()
-
-var input_direction = 0
-
-func run():
-	input_direction = 0
-	if Input.is_action_pressed("walk_left"):
-		input_direction -= 1
-	if Input.is_action_pressed("walk_right"):
-		input_direction += 1
-	
-	velocity.x = input_direction*speed
-
-const coyote_timer:float = 0.3
-var general_coyote_time:float = 0
-var walljump_coyote_time:float = 0
-var walljump_is_right:bool = true
-var has_jump:bool = true
-var has_walljump:bool = true
-
-func jump():
-	#If we're in contact with a wall or floor, refresh jump timers.
-	
-	if is_on_floor():
-		general_coyote_time = 0
-		#only refresh whether we have a jump on touching the ground though.
-		has_jump = true
-		has_walljump = true
-	if is_on_wall() and input_direction != 0:
-		walljump_coyote_time = 0
-		walljump_is_right = get_wall_normal().x > 0
-	if Input.is_action_just_pressed("jump"):
-		if general_coyote_time < coyote_timer and has_jump:
-			velocity.y = -jump_force
-			has_jump = false
-		if walljump_coyote_time < coyote_timer and has_walljump:
-			velocity.y = -jump_force
-			velocity.x = speed * (1 if walljump_is_right else -1)
-			has_walljump = false
-	
-	else:
-		velocity.y += gravity
-
-func _process(delta):
-	update_timers(delta)
-
-func update_timers(delta):
-	general_coyote_time += delta
-	walljump_coyote_time += delta
 
 # Function to show the game over screen
 func show_game_over_screen():
