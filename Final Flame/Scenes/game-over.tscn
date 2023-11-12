@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://b1eldfxkjqh2d"]
+[gd_scene load_steps=7 format=3 uid="uid://b1eldfxkjqh2d"]
 
 [ext_resource type="Texture2D" uid="uid://cb878xmc6xyhr" path="res://Assets/UI/gameover.png" id="1_6mcem"]
 [ext_resource type="Script" path="res://Scripts/game-over.gd" id="1_xofpx"]
 [ext_resource type="Texture2D" uid="uid://h4fj18hbwv5y" path="res://Assets/UI/menubutton-norm.png" id="2_arycm"]
 [ext_resource type="Texture2D" uid="uid://cg4njmqfu0ho3" path="res://Assets/UI/menubutton-pressed.png" id="3_7ks1c"]
 [ext_resource type="Texture2D" uid="uid://bfqlyt838fa6y" path="res://Assets/UI/menubutton-hover.png" id="4_f2i0f"]
+[ext_resource type="AudioStream" uid="uid://3ma2vq4kjfqr" path="res://Assets/Sounds/gameover-loop.mp3" id="6_sdqib"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -30,5 +31,10 @@ scale = Vector2(1.4902, 1.4902)
 texture_normal = ExtResource("2_arycm")
 texture_pressed = ExtResource("3_7ks1c")
 texture_hover = ExtResource("4_f2i0f")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_sdqib")
+volume_db = -38.414
+autoplay = true
 
 [connection signal="pressed" from="menu-button" to="." method="_on_menubutton_pressed"]

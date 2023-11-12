@@ -1,0 +1,112 @@
+[gd_scene load_steps=15 format=3 uid="uid://dbg82x876ofu3"]
+
+[ext_resource type="Script" path="res://Scripts/you-win.gd" id="1_aju35"]
+[ext_resource type="Texture2D" uid="uid://bb2lx2h167jtn" path="res://Assets/UI/youwin.png" id="2_wynn3"]
+[ext_resource type="Texture2D" uid="uid://dc3vwli2317t0" path="res://Assets/UI/Background/Glacier/sky.png" id="3_825es"]
+[ext_resource type="Texture2D" uid="uid://cx13u0yib0u5h" path="res://Assets/UI/Background/Glacier/clouds_bg.png" id="4_oj5mj"]
+[ext_resource type="Texture2D" uid="uid://csogxtn62x2xp" path="res://Assets/UI/Background/Glacier/glacial_mountains.png" id="5_cktcm"]
+[ext_resource type="Texture2D" uid="uid://bll8oaf60j28" path="res://Assets/UI/Background/Glacier/clouds_mg_3.png" id="6_3v5u8"]
+[ext_resource type="Texture2D" uid="uid://f2ujquluor80" path="res://Assets/UI/Background/Glacier/clouds_mg_2.png" id="7_5w3x6"]
+[ext_resource type="Texture2D" uid="uid://dlsptntmeexgm" path="res://Assets/UI/Background/Glacier/clouds_mg_1.png" id="8_7ffng"]
+[ext_resource type="AudioStream" uid="uid://c154g1221guu" path="res://Assets/Sounds/guitar-loop.mp3" id="9_8r64f"]
+[ext_resource type="Texture2D" uid="uid://c6k340a1o7wem" path="res://Assets/UI/Background/Glacier/cloud_lonely.png" id="9_a2gjl"]
+[ext_resource type="Script" path="res://Scripts/menu-music.gd" id="10_foxpe"]
+[ext_resource type="Texture2D" uid="uid://h4fj18hbwv5y" path="res://Assets/UI/menubutton-norm.png" id="12_xcrwl"]
+[ext_resource type="Texture2D" uid="uid://cg4njmqfu0ho3" path="res://Assets/UI/menubutton-pressed.png" id="13_qw5wg"]
+[ext_resource type="Texture2D" uid="uid://bfqlyt838fa6y" path="res://Assets/UI/menubutton-hover.png" id="14_6ktxw"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_aju35")
+
+[node name="Title-screen" type="Sprite2D" parent="."]
+position = Vector2(572, 350)
+scale = Vector2(0.969103, 0.964618)
+texture = ExtResource("2_wynn3")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Node2D"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Node2D/ParallaxBackground"]
+position = Vector2(590, 320)
+scale = Vector2(3.8, 3.8)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/ParallaxBackground/ParallaxLayer"]
+texture = ExtResource("3_825es")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="Node2D/ParallaxBackground"]
+position = Vector2(590, 320)
+scale = Vector2(3.8, 3.8)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/ParallaxBackground/ParallaxLayer2"]
+texture = ExtResource("4_oj5mj")
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="Node2D/ParallaxBackground"]
+position = Vector2(590, 320)
+scale = Vector2(3.8, 3.8)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/ParallaxBackground/ParallaxLayer3"]
+texture = ExtResource("5_cktcm")
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="Node2D/ParallaxBackground"]
+position = Vector2(590, 320)
+scale = Vector2(3.8, 3.8)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/ParallaxBackground/ParallaxLayer4"]
+texture = ExtResource("6_3v5u8")
+
+[node name="ParallaxLayer5" type="ParallaxLayer" parent="Node2D/ParallaxBackground"]
+position = Vector2(590, 320)
+scale = Vector2(3.8, 3.8)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/ParallaxBackground/ParallaxLayer5"]
+texture = ExtResource("7_5w3x6")
+
+[node name="ParallaxLayer6" type="ParallaxLayer" parent="Node2D/ParallaxBackground"]
+position = Vector2(590, 320)
+scale = Vector2(3.8, 3.8)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/ParallaxBackground/ParallaxLayer6"]
+texture = ExtResource("8_7ffng")
+
+[node name="ParallaxLayer7" type="ParallaxLayer" parent="Node2D/ParallaxBackground"]
+position = Vector2(590, 320)
+scale = Vector2(3.8, 3.8)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/ParallaxBackground/ParallaxLayer7"]
+texture = ExtResource("9_a2gjl")
+
+[node name="menu-music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_8r64f")
+volume_db = -21.55
+autoplay = true
+script = ExtResource("10_foxpe")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 394.0
+offset_top = 452.0
+offset_right = 644.0
+offset_bottom = 527.0
+scale = Vector2(1.46598, 1.46598)
+texture_normal = ExtResource("12_xcrwl")
+texture_pressed = ExtResource("13_qw5wg")
+texture_hover = ExtResource("14_6ktxw")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -1
+layout_mode = 0
+offset_left = 379.0
+offset_top = 311.0
+offset_right = 419.0
+offset_bottom = 351.0
+scale = Vector2(5.9001, 1.26444)
+color = Color(0.266667, 0.266667, 0.266667, 0.552941)
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

@@ -46,13 +46,13 @@ layer_3/tile_data = PackedInt32Array(-2293639, 786433, 8, -2359175, 786433, 8, -
 [node name="Win_Zone" type="Area2D" parent="Level_Tiles"]
 
 [node name="Player" parent="." instance=ExtResource("3_ri24d")]
-position = Vector2(320, 272)
+position = Vector2(3731, -955)
 floor_snap_length = 2.0
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../Camera2D")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(320, 272)
+position = Vector2(3731, -955)
 
 [node name="ParallaxBackground" parent="." instance=ExtResource("4_lxtdy")]

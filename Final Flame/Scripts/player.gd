@@ -8,6 +8,7 @@ extends CharacterBody2D
 
 @export var speed = 400
 @export var gravity = 30
+@export var friction = 15
 @export var jump_force = 700
 @export var wall_jump_force = 150
 
@@ -49,6 +50,8 @@ func _ready():
 	jump_sound = $jump
 	
 	footstep_sound.connect("finished", _on_FootstepSound_finished)
+	
+	add_child(GlobalTimer)
 
 
 func _physics_process(delta):
@@ -110,13 +113,19 @@ func jump():
 			has_walljump = false
 			state = PlayerState.WALLJUMP
 	elif !is_on_floor():
-		velocity.y += gravity
+		if is_on_wall():
+			velocity.y += friction
+		else:	
+			velocity.y += gravity
 		if velocity.y > 0:
 			state = PlayerState.FALL
 
 func _process(delta):
 	update_timers(delta)
 	update_animations()
+	# Update the timer label position to follow the camera
+	#if GlobalTimer:
+	#	GlobalTimer.follow_camera(global_transform)
 
 func update_timers(delta):
 	general_coyote_time += delta

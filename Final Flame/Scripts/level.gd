@@ -122,6 +122,9 @@ func _on_win_zone_entered(body):
 			SceneDictionary.change_scene("level-4")
 		elif(current_scene_name == "level-4"):
 			SceneDictionary.change_scene("level-5")
+		elif(current_scene_name == "level-5"):
+			GlobalTimer.time_stop()
+			SceneDictionary.change_scene("you-win")
 
 func _on_death_zone_entered(body):
 	if body.is_in_group("player"):

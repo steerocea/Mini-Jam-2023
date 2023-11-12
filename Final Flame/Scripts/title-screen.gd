@@ -1,5 +1,11 @@
 extends Control
 
+func _ready():
+	GlobalTimer.center_timer()
+	GlobalTimer.set_timer_visibility(false)
+
 func _on_startbutton_pressed():
-	get_tree().change_scene_to_file("res://Scenes/Levels/level_t.tscn")
-	pass # Replace with function body.
+	GlobalTimer.set_timer_visibility(true)
+	GlobalTimer.time_reset()
+	GlobalTimer.time_start()
+	SceneDictionary.change_scene("level-1")
