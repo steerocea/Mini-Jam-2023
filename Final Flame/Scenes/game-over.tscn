@@ -1,10 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://djcbkaw5dtnnh"]
+[gd_scene load_steps=6 format=3 uid="uid://b1eldfxkjqh2d"]
 
-[ext_resource type="Texture2D" uid="uid://cu3l4vdoc25vk" path="res://Assets/UI/gameover.png" id="1_6mcem"]
+[ext_resource type="Texture2D" uid="uid://cb878xmc6xyhr" path="res://Assets/UI/gameover.png" id="1_6mcem"]
 [ext_resource type="Script" path="res://Scripts/game-over.gd" id="1_xofpx"]
-[ext_resource type="Texture2D" uid="uid://chc70m1gm3h1" path="res://Assets/UI/menubutton-norm.png" id="2_arycm"]
-[ext_resource type="Texture2D" uid="uid://q8ui43tkbjog" path="res://Assets/UI/menubutton-pressed.png" id="3_7ks1c"]
-[ext_resource type="Texture2D" uid="uid://bv8plknef6kqj" path="res://Assets/UI/menubutton-hover.png" id="4_f2i0f"]
+[ext_resource type="Texture2D" uid="uid://h4fj18hbwv5y" path="res://Assets/UI/menubutton-norm.png" id="2_arycm"]
+[ext_resource type="Texture2D" uid="uid://cg4njmqfu0ho3" path="res://Assets/UI/menubutton-pressed.png" id="3_7ks1c"]
+[ext_resource type="Texture2D" uid="uid://bfqlyt838fa6y" path="res://Assets/UI/menubutton-hover.png" id="4_f2i0f"]
 
 [node name="Control" type="Control"]
 layout_mode = 3

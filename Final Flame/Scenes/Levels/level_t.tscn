@@ -1,8 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bmq0swlg5c4ub"]
+[gd_scene load_steps=4 format=3 ]
 
 [ext_resource type="Script" path="res://Scripts/level.gd" id="1_1u11t"]
-[ext_resource type="TileSet" uid="uid://byh02g1bhfo0l" path="res://Assets/Tiles/level_set.tres" id="1_4xogo"]
-[ext_resource type="PackedScene" uid="uid://j5wnleimpye6" path="res://Scenes/player.tscn" id="2_j36u0"]
+[ext_resource type="TileSet" path="res://Assets/Tiles/level_set.tres" id="1_4xogo"]
+[ext_resource type="PackedScene" path="res://Scenes/player.tscn" id="2_j36u0"]
 
 [node name="LevelT" type="Node2D" node_paths=PackedStringArray("tilemap", "death_zone", "win_zone", "camera")]
 script = ExtResource("1_1u11t")
