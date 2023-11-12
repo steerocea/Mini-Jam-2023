@@ -111,7 +111,8 @@ func jump():
 			state = PlayerState.WALLJUMP
 	elif !is_on_floor():
 		velocity.y += gravity
-		state = PlayerState.FALL
+		if velocity.y > 0:
+			state = PlayerState.FALL
 
 func _process(delta):
 	update_timers(delta)
