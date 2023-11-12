@@ -17,11 +17,13 @@ func _ready():
 	ice_sound = $IceSound
 	pass # Replace with function body.
 
-func _on_meltbox_entered(_body):
+func _on_meltbox_entered(body):
 	if(!melting):
 		print("Beginning melt")
 		melting = true
 		ice_sound.play()
+	if(body.is_in_group("player")):
+		body.refresh_walljump()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

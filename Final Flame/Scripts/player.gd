@@ -175,5 +175,8 @@ func play_footstep_sound():
 func _on_FootstepSound_finished():
 	footstep_playing = false
 
+func refresh_walljump():
+	has_walljump = true
+
 
 
