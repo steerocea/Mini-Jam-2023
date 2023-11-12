@@ -38,7 +38,7 @@ func do_cell_substitutions():
 		if tilemap.get_layer_name(i) == "death" :
 			add_death_collisions(i)
 		if tilemap.get_layer_name(i) == "win" :
-			add_death_collisions(i)
+			add_win_collisions(i)
 
 func replace_ice_tiles(ice_layer_index:int):
 	var ice_tiles:Array[Vector2i] = tilemap.get_used_cells(ice_layer_index)
@@ -57,7 +57,7 @@ func add_death_collisions(death_layer_index:int):
 		var new_death_shape = RectangleShape2D.new()
 		new_death_shape.size = tile_size
 		new_death_node.shape = new_death_shape
-		tilemap.add_child(new_death_node)
+		death_zone.add_child(new_death_node)
 		pass
 	tilemap.set_layer_enabled(death_layer_index,false)
 
@@ -69,7 +69,7 @@ func add_win_collisions(win_layer_index:int):
 		var new_win_shape = RectangleShape2D.new()
 		new_win_shape.size = tile_size
 		new_win_node.shape = new_win_shape
-		tilemap.add_child(new_win_node)
+		win_zone.add_child(new_win_node)
 		pass
 	tilemap.set_layer_enabled(win_layer_index,false)
 
@@ -109,8 +109,8 @@ func set_boundaries():
 	
 	self.add_child(barrier_node)
 
-func _on_win_zone_entered(area):
-	if (loaded):
+func _on_win_zone_entered(body):
+	if body.is_in_group("player"):
 		var current_scene_path = get_tree().get_current_scene()
 		var current_scene_name = current_scene_path.name
 		
@@ -122,14 +122,10 @@ func _on_win_zone_entered(area):
 			SceneDictionary.change_scene("level-4")
 		elif(current_scene_name == "level-4"):
 			SceneDictionary.change_scene("level-5")
-	else:
-		loaded = true
 
-func _on_death_zone_entered(area):
-	if (loaded_dead):
+func _on_death_zone_entered(body):
+	if body.is_in_group("player"):
 		SceneDictionary.change_scene("game-over")
-	else:
-		loaded_dead = true
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
