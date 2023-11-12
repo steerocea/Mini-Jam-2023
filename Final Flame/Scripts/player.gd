@@ -143,8 +143,6 @@ func update_animations():
 		PlayerState.WALLJUMP:
 			animation_player.play("Wall-Jump")
 		PlayerState.FALL:
-			#No looping this one
-			if(animation_player.current_animation != "Fall"):
 				animation_player.play("Fall")
 		PlayerState.DEATH:
 			# Pause the game
