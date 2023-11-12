@@ -189,7 +189,6 @@ _data = {
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a1gar"]
-radius = 16.0
 height = 60.0
 
 [node name="Player" type="CharacterBody2D"]
