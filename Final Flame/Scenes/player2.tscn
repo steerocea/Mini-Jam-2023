@@ -1,0 +1,238 @@
+[gd_scene load_steps=21 format=3 uid="uid://bjb0s4isui15k"]
+
+[ext_resource type="Script" path="res://Scripts/player2.gd" id="1_5ueju"]
+[ext_resource type="Texture2D" uid="uid://b8ru64qhg7c0x" path="res://Assets/Player/warrior-spritesheet.png" id="2_vv1xp"]
+[ext_resource type="AudioStream" uid="uid://cxhnhlioovpia" path="res://Assets/Sounds/fire-burning.wav" id="3_yrmhl"]
+[ext_resource type="Script" path="res://Scripts/fire-sound.gd" id="4_mydnl"]
+[ext_resource type="AudioStream" uid="uid://cl5uurjukx1u1" path="res://Assets/Sounds/piano-loop.mp3" id="5_2qhxk"]
+[ext_resource type="AudioStream" uid="uid://bavl7r66leq8x" path="res://Assets/Sounds/footstep.ogg" id="6_mbdwg"]
+[ext_resource type="Script" path="res://Scripts/footstep.gd" id="7_4p8d1"]
+[ext_resource type="AudioStream" uid="uid://uis450ctmty6" path="res://Assets/Sounds/jump.wav" id="8_upve6"]
+
+[sub_resource type="Animation" id="Animation_kcq0v"]
+resource_name = "Dash-Right"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [48, 49, 50, 51, 52, 53, 54]
+}
+
+[sub_resource type="Animation" id="Animation_pqnbb"]
+resource_name = "Death"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [384, 384, 385, 386, 387, 388, 389, 390, 391, 392, 393, 394]
+}
+
+[sub_resource type="Animation" id="Animation_qst22"]
+resource_name = "Idle"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_n0a28"]
+resource_name = "Jump"
+length = 1.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [96, 97, 98, 112, 113, 128, 129, 130, 129, 128, 114, 113]
+}
+
+[sub_resource type="Animation" id="Animation_gckiy"]
+resource_name = "Roll-Right"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [80, 81, 82, 83, 84, 85, 86]
+}
+
+[sub_resource type="Animation" id="Animation_4iji6"]
+resource_name = "Run-Right"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [16, 17, 18, 19, 20, 21, 22, 23]
+}
+
+[sub_resource type="Animation" id="Animation_76tnk"]
+resource_name = "Slide-Right"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [64, 65, 66, 67, 68, 69, 70]
+}
+
+[sub_resource type="Animation" id="Animation_qu5rk"]
+resource_name = "Walk-Right"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [32, 33, 34, 35, 36, 37, 38, 39]
+}
+
+[sub_resource type="Animation" id="Animation_cl706"]
+resource_name = "Wall-Hang"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [336, 337, 338, 339]
+}
+
+[sub_resource type="Animation" id="Animation_gr3qg"]
+resource_name = "Wall-Jump"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [352, 353, 354, 113, 114, 128, 129, 130, 129, 128, 114, 113]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6ukbh"]
+_data = {
+"Dash-Right": SubResource("Animation_kcq0v"),
+"Death": SubResource("Animation_pqnbb"),
+"Idle": SubResource("Animation_qst22"),
+"Jump": SubResource("Animation_n0a28"),
+"Roll-Right": SubResource("Animation_gckiy"),
+"Run-Right": SubResource("Animation_4iji6"),
+"Slide-Right": SubResource("Animation_76tnk"),
+"Walk-Right": SubResource("Animation_qu5rk"),
+"Wall-Hang": SubResource("Animation_cl706"),
+"Wall-Jump": SubResource("Animation_gr3qg")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a1gar"]
+height = 60.0
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_5ueju")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(15, -34)
+scale = Vector2(1.3, 1.406)
+texture = ExtResource("2_vv1xp")
+hframes = 16
+vframes = 25
+frame = 48
+
+[node name="Camera2D" type="Camera2D" parent="."]
+visible = false
+position = Vector2(0, -133)
+enabled = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6ukbh")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -30)
+shape = SubResource("CapsuleShape2D_a1gar")
+
+[node name="fire-sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_yrmhl")
+volume_db = -2.811
+autoplay = true
+script = ExtResource("4_mydnl")
+
+[node name="piano-loop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_2qhxk")
+volume_db = -23.423
+autoplay = true
+script = ExtResource("4_mydnl")
+
+[node name="footstep" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_mbdwg")
+volume_db = -36.455
+script = ExtResource("7_4p8d1")
+
+[node name="jump" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_upve6")
+volume_db = -40.288

@@ -4,7 +4,6 @@ extends CharacterBody2D
 @export var gravity = 30
 @export var jump_force = 700
 @export var wall_jump_force = 150
-@export var friction = 15
 
 enum PlayerState {
 	IDLE,
@@ -46,82 +45,13 @@ func _ready():
 	
 	footstep_sound.connect("finished", _on_FootstepSound_finished)
 
+
 func _physics_process(delta):
-	if !is_on_floor():
-		if is_on_wall():
-			state = PlayerState.WALLHANG
-			velocity.y = min(velocity.y, 0)  # Stop upward movement on the wall
-			velocity.y += friction  # Apply a slow downward force
-		else:
-			velocity.y += gravity
-		if velocity.y > 1000:
-			velocity.y = 1000
-		if (Input.get_action_strength("walk_right") > 0) and !is_on_wall():
-			if (Input.get_action_strength("sprint") > 0):
-				speed = 400
-			else:
-				speed = 200
-			horizontal_direction = 1
-			character_sprite.scale.x = 1
-			character_sprite.position.x = 15
-		elif (Input.get_action_strength("walk_left") > 0) and !is_on_wall():
-			if (Input.get_action_strength("sprint") > 0):
-				speed = 400
-			else:
-				speed = 200
-			horizontal_direction = -1
-			character_sprite.scale.x = -1
-			character_sprite.position.x = -15
-		elif Input.is_action_just_pressed("jump"):
-			if state == PlayerState.WALLHANG:
-				velocity.y = -jump_force
-				speed = 100
-				horizontal_direction = horizontal_direction * -1
-				state = PlayerState.WALLJUMP
-				jump_sound.play()
-	elif Input.is_action_just_pressed("jump"):
-		if is_on_floor():
-			velocity.y = -jump_force
-			state = PlayerState.JUMP
-			jump_sound.play()
-	#place holder
-	elif Input.is_action_just_pressed("death"):
-		state = PlayerState.DEATH
-	elif Input.get_action_strength("slide") > 0:
-		if is_on_floor():
-			speed = 500
-			state = PlayerState.SLIDE
-	elif ((Input.get_action_strength("walk_left") > 0) && (Input.get_action_strength("run_left") == 0)):
-		if Input.get_action_strength("sprint") > 0:
-			speed = 400
-			state = PlayerState.RUNLEFT
-		else:
-			speed = 200
-			state = PlayerState.WALKLEFT
-		horizontal_direction = -1
-	elif ((Input.get_action_strength("walk_right") > 0) && (Input.get_action_strength("run_right") == 0)):
-		if Input.get_action_strength("sprint") > 0:
-			speed = 400
-			state = PlayerState.RUNRIGHT
-		else:
-			speed = 200
-			state = PlayerState.WALKRIGHT
-		horizontal_direction = 1
-	elif Input.get_action_strength("run_left") > 0:
-		speed = 400
-		horizontal_direction = -1
-		state = PlayerState.RUNLEFT
-	elif Input.get_action_strength("run_right") > 0:
-		speed = 400
-		horizontal_direction = 1
-		state = PlayerState.RUNRIGHT
-	else:
-		if !player_is_dead:
-			speed = 0
-			horizontal_direction = 0
-			state = PlayerState.IDLE
-		
-	velocity.x = speed * horizontal_direction
+	
+	run()
+	#jump does gravity and jumps/walljumps for us: basically handles verticality.
+	jump()
+	
 	move_and_slide()
 	
 	match state:
@@ -163,6 +93,28 @@ func _physics_process(delta):
 			player_is_dead = true
 			
 			#show_game_over_screen()
+
+var input_direction = 0
+
+func run():
+	input_direction = 0
+	if Input.is_action_pressed("walk_left"):
+		input_direction -= 1
+	if Input.is_action_pressed("walk_right"):
+		input_direction += 1
+	
+	velocity.x = input_direction*speed
+
+func jump():
+	if Input.is_action_just_pressed("jump"):
+		if is_on_floor():
+			velocity.y = -jump_force
+		elif is_on_wall() and input_direction != 0:
+			velocity.y = -jump_force
+			velocity.x = -input_direction*speed
+	
+	else:
+		velocity.y += gravity
 
 # Function to show the game over screen
 func show_game_over_screen():
