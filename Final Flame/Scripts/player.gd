@@ -3,6 +3,8 @@ extends CharacterBody2D
 @export var speed = 300
 @export var gravity = 30
 @export var jump_force = 700
+@export var wall_jump_force = 150
+@export var friction = 15
 
 enum PlayerState {
 	IDLE,
@@ -13,6 +15,8 @@ enum PlayerState {
 	JUMP,
 	SLIDE,
 	DEATH,
+	WALLHANG,
+	WALLJUMP,
 }
 
 var state: PlayerState = PlayerState.IDLE
@@ -44,20 +48,37 @@ func _ready():
 
 func _physics_process(delta):
 	if !is_on_floor():
-		velocity.y += gravity
+		if is_on_wall():
+			state = PlayerState.WALLHANG
+			velocity.y = min(velocity.y, 0)  # Stop upward movement on the wall
+			velocity.y += friction  # Apply a slow downward force
+		else:
+			velocity.y += gravity
 		if velocity.y > 1000:
 			velocity.y = 1000
-		if (Input.get_action_strength("walk_right") > 0):
-			speed = 200
+		if (Input.get_action_strength("walk_right") > 0) and !is_on_wall():
+			if (Input.get_action_strength("sprint") > 0):
+				speed = 400
+			else:
+				speed = 200
 			horizontal_direction = 1
 			character_sprite.scale.x = 1
 			character_sprite.position.x = 15
-		elif (Input.get_action_strength("walk_left") > 0):
-			speed = 200
+		elif (Input.get_action_strength("walk_left") > 0) and !is_on_wall():
+			if (Input.get_action_strength("sprint") > 0):
+				speed = 400
+			else:
+				speed = 200
 			horizontal_direction = -1
 			character_sprite.scale.x = -1
 			character_sprite.position.x = -15
-		
+		elif Input.is_action_just_pressed("jump"):
+			if state == PlayerState.WALLHANG:
+				velocity.y = -jump_force
+				speed = 100
+				horizontal_direction = horizontal_direction * -1
+				state = PlayerState.WALLJUMP
+				jump_sound.play()
 	elif Input.is_action_just_pressed("jump"):
 		if is_on_floor():
 			velocity.y = -jump_force
@@ -128,6 +149,10 @@ func _physics_process(delta):
 			animation_player.play("Jump")
 		PlayerState.SLIDE:
 			animation_player.play("Slide-Right")
+		PlayerState.WALLHANG:
+			animation_player.play("Wall-Hang")
+		PlayerState.WALLJUMP:
+			animation_player.play("Wall-Jump")
 		PlayerState.DEATH:
 			# Pause the game
 			#get_tree().paused = true
