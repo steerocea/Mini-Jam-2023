@@ -10,6 +10,8 @@ extends Node2D
 @export var camera:Camera2D
 var ice_scene:PackedScene = preload("res://Scenes/ice_tile.tscn")
 var tile_size:Vector2i
+var loaded = false
+var loaded_dead = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -20,6 +22,12 @@ func _ready():
 	tile_size = tilemap.tile_set.tile_size
 	do_cell_substitutions()
 	set_boundaries()
+	# Connect the signal from the win zone to the method that handles the scene transition
+	win_zone = $Level_Tiles/Win_Zone
+	win_zone.body_entered.connect(_on_win_zone_entered)
+	
+	death_zone = $Level_Tiles/Death_Zone
+	death_zone.body_entered.connect(_on_death_zone_entered)
 	pass # Replace with function body.
 
 func do_cell_substitutions():
@@ -101,6 +109,26 @@ func set_boundaries():
 	
 	self.add_child(barrier_node)
 
+func _on_win_zone_entered(area):
+	if (loaded):
+		var current_scene_path = get_tree().get_current_scene()
+		var current_scene_name = current_scene_path.name
+		
+		if(current_scene_name == "level-2"):
+			SceneDictionary.change_scene("level-3")
+		elif(current_scene_name == "level-3"):
+			SceneDictionary.change_scene("level-4")
+		elif(current_scene_name == "level-4"):
+			SceneDictionary.change_scene("level-5")
+	else:
+		loaded = true
+
+func _on_death_zone_entered(area):
+	if (loaded_dead):
+		SceneDictionary.change_scene("game-over")
+	else:
+		loaded_dead = true
+		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass

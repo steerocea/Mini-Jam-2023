@@ -1,11 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://bcx6njofijeqg"]
+[gd_scene load_steps=7 format=3 uid="uid://bcx6njofijeqg"]
 
 [ext_resource type="Script" path="res://Scripts/level.gd" id="1_4ajua"]
 [ext_resource type="TileSet" uid="uid://byh02g1bhfo0l" path="res://Assets/Tiles/level_set.tres" id="2_mplxh"]
 [ext_resource type="PackedScene" uid="uid://b4nrvmaxanhxp" path="res://Scenes/player.tscn" id="3_sjpqa"]
 [ext_resource type="PackedScene" uid="uid://b3eumhjo6nh1k" path="res://Scenes/parallax_background.tscn" id="4_qib5g"]
 
-[node name="LevelT" type="Node2D" node_paths=PackedStringArray("tilemap", "death_zone", "win_zone", "camera")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bww0a"]
+size = Vector2(39098.8, 18.9051)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q1k6a"]
+size = Vector2(194, 20)
+
+[node name="level-4" type="Node2D" node_paths=PackedStringArray("tilemap", "death_zone", "win_zone", "camera")]
 script = ExtResource("1_4ajua")
 tilemap = NodePath("Level_Tiles")
 death_zone = NodePath("Level_Tiles/Death_Zone")
@@ -44,8 +50,18 @@ layer_3/tile_data = PackedInt32Array(852034, 786433, 8, 917570, 786433, 8, 98310
 [node name="Death_Zone" type="Area2D" parent="Level_Tiles"]
 scale = Vector2(0.5, 0.5)
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level_Tiles/Death_Zone"]
+position = Vector2(3512, 2720)
+scale = Vector2(0.142232, 15.0475)
+shape = SubResource("RectangleShape2D_bww0a")
+
 [node name="Win_Zone" type="Area2D" parent="Level_Tiles"]
 scale = Vector2(0.5, 0.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level_Tiles/Win_Zone"]
+position = Vector2(4246, 854)
+scale = Vector2(-0.452357, 19.712)
+shape = SubResource("RectangleShape2D_q1k6a")
 
 [node name="Player" parent="." instance=ExtResource("3_sjpqa")]
 position = Vector2(320, 272)

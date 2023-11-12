@@ -1,11 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://cgrrspnq56m1p"]
+[gd_scene load_steps=7 format=3 uid="uid://cgrrspnq56m1p"]
 
 [ext_resource type="Script" path="res://Scripts/level.gd" id="1_e2xug"]
 [ext_resource type="TileSet" uid="uid://byh02g1bhfo0l" path="res://Assets/Tiles/level_set.tres" id="2_6t880"]
 [ext_resource type="PackedScene" uid="uid://b4nrvmaxanhxp" path="res://Scenes/player.tscn" id="3_shej6"]
 [ext_resource type="PackedScene" uid="uid://b3eumhjo6nh1k" path="res://Scenes/parallax_background.tscn" id="4_lbsn0"]
 
-[node name="LevelT" type="Node2D" node_paths=PackedStringArray("tilemap", "death_zone", "win_zone", "camera")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2xliq"]
+size = Vector2(854.572, 402)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c7cqs"]
+size = Vector2(71.2328, 14.2396)
+
+[node name="level-3" type="Node2D" node_paths=PackedStringArray("tilemap", "death_zone", "win_zone", "camera")]
 script = ExtResource("1_e2xug")
 tilemap = NodePath("Level_Tiles")
 death_zone = NodePath("Level_Tiles/Death_Zone")
@@ -31,7 +37,7 @@ layer_2/modulate = Color(1, 1, 1, 1)
 layer_2/y_sort_enabled = false
 layer_2/y_sort_origin = 0
 layer_2/z_index = 0
-layer_2/tile_data = PackedInt32Array(1245197, 720897, 8, 1245198, 720897, 8, 1245199, 720897, 8, 1245200, 720897, 8, 1245201, 720897, 8, 1245202, 720897, 8, 1245203, 720897, 8, 1245204, 720897, 8, 1245205, 720897, 8, 1245206, 720897, 8, 1245207, 720897, 8, 1245208, 720897, 8, 1245209, 720897, 8, 1245210, 720897, 8, 1245211, 720897, 8, 1245212, 720897, 8, 1245213, 720897, 8, 1245214, 720897, 8, 1245215, 720897, 8, 1245216, 720897, 8, 1245217, 720897, 8, 1245218, 720897, 8, 1245219, 720897, 8, 1245220, 720897, 8, 1245221, 720897, 8, 1245222, 720897, 8, 1245223, 720897, 8, 1245224, 720897, 8, 1245225, 720897, 8, 1245226, 720897, 8, 1245227, 720897, 8, 1245228, 720897, 8, 1245229, 720897, 8, 1245230, 720897, 8, 1245231, 720897, 8, 1245232, 720897, 8, 1245233, 720897, 8, 1245234, 720897, 8, 1245235, 720897, 8, 1245236, 720897, 8, 1245237, 720897, 8, 1245238, 720897, 8, 1245239, 720897, 8, 1245240, 720897, 8, 1245241, 720897, 8, 1245242, 720897, 8, 1245243, 720897, 8, 1245244, 720897, 8, 1245245, 720897, 8, 1245246, 720897, 8, 1245247, 720897, 8, 1245248, 720897, 8, 1245249, 720897, 8, 1245250, 720897, 8, 1245251, 720897, 8, 1245252, 720897, 8, 1245253, 720897, 8, 1245254, 720897, 8, 1245255, 720897, 8, 1245256, 720897, 8, 1245257, 720897, 8)
+layer_2/tile_data = PackedInt32Array(2752518, 720897, 8, 2752519, 720897, 8, 2752520, 720897, 8, 2752521, 720897, 8, 2752522, 720897, 8, 2752523, 720897, 8, 2752524, 720897, 8, 2752525, 720897, 8, 2752526, 720897, 8, 2752527, 720897, 8, 2752528, 720897, 8, 2752529, 720897, 8, 2752530, 720897, 8, 2752531, 720897, 8, 2752532, 720897, 8, 2752533, 720897, 8, 2752534, 720897, 8, 2752535, 720897, 8, 2752536, 720897, 8, 2752537, 720897, 8, 2752538, 720897, 8, 2752539, 720897, 8, 2752540, 720897, 8, 2752541, 720897, 8, 2752542, 720897, 8, 2752543, 720897, 8, 2752544, 720897, 8, 2752545, 720897, 8, 2752546, 720897, 8, 2752547, 720897, 8, 2752548, 720897, 8, 2752549, 720897, 8, 2752550, 720897, 8, 2752551, 720897, 8, 2752552, 720897, 8, 2752553, 720897, 8, 2752554, 720897, 8, 2752555, 720897, 8, 2752556, 720897, 8, 2752557, 720897, 8, 2752558, 720897, 8, 2752559, 720897, 8, 2752560, 720897, 8, 2752561, 720897, 8, 2752562, 720897, 8, 2752563, 720897, 8, 2752564, 720897, 8, 2752565, 720897, 8, 2752566, 720897, 8, 2752567, 720897, 8, 2752568, 720897, 8, 2752569, 720897, 8, 2752570, 720897, 8, 2752571, 720897, 8, 2752572, 720897, 8, 2752573, 720897, 8, 2752574, 720897, 8, 2752575, 720897, 8, 2752576, 720897, 8, 2752577, 720897, 8, 2752578, 720897, 8, 2752579, 720897, 8, 2752580, 720897, 8, 2752581, 720897, 8, 2752582, 720897, 8, 2752583, 720897, 8, 2752584, 720897, 8, 2752585, 720897, 8, 2752586, 720897, 8, 2752587, 720897, 8, 2752588, 720897, 8, 2752589, 720897, 8, 2752590, 720897, 8, 2752591, 720897, 8, 2752593, 720897, 8, 2752594, 720897, 8, 2752592, 720897, 8, 2752595, 720897, 8)
 layer_3/name = "win"
 layer_3/enabled = true
 layer_3/modulate = Color(1, 1, 1, 1)
@@ -43,8 +49,18 @@ layer_3/tile_data = PackedInt32Array(393272, 786433, 8, 458808, 786433, 8, 52434
 [node name="Death_Zone" type="Area2D" parent="Level_Tiles"]
 scale = Vector2(0.5, 0.5)
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level_Tiles/Death_Zone"]
+position = Vector2(2808, 2766)
+scale = Vector2(7, 1)
+shape = SubResource("RectangleShape2D_2xliq")
+
 [node name="Win_Zone" type="Area2D" parent="Level_Tiles"]
 scale = Vector2(0.5, 0.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level_Tiles/Win_Zone"]
+position = Vector2(3598, 426)
+scale = Vector2(1.50983, 58.4963)
+shape = SubResource("RectangleShape2D_c7cqs")
 
 [node name="Player" parent="." instance=ExtResource("3_shej6")]
 position = Vector2(320, 272)
