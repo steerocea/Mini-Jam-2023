@@ -1,5 +1,9 @@
 extends CharacterBody2D
 
+#TODO: Jump Buffer
+#TODO: Coyote Timer
+#TODO: Integrate animations
+
 @export var speed = 400
 @export var gravity = 30
 @export var jump_force = 700
@@ -105,16 +109,39 @@ func run():
 	
 	velocity.x = input_direction*speed
 
+const coyote_timer:float = 0.3
+var general_coyote_time:float = 0
+var walljump_coyote_time:float = 0
+var has_jump:bool = true
+var has_walljump:bool = true
+
 func jump():
+	#If we're in contact with a wall or floor, refresh jump timers.
+	if is_on_floor():
+		general_coyote_time = 0
+		#only refresh whether we have a jump on touching the ground though.
+		has_jump = true
+		has_walljump = true
+	if is_on_wall() and input_direction != 0:
+		walljump_coyote_time = 0
 	if Input.is_action_just_pressed("jump"):
-		if is_on_floor():
+		if general_coyote_time < coyote_timer and has_jump:
 			velocity.y = -jump_force
-		elif is_on_wall() and input_direction != 0:
+			has_jump = false
+		if walljump_coyote_time < coyote_timer and has_walljump:
 			velocity.y = -jump_force
 			velocity.x = -input_direction*speed
+			has_walljump = false
 	
 	else:
 		velocity.y += gravity
+
+func _process(delta):
+	update_timers(delta)
+
+func update_timers(delta):
+	general_coyote_time += delta
+	walljump_coyote_time += delta
 
 # Function to show the game over screen
 func show_game_over_screen():
