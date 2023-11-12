@@ -1,14 +1,14 @@
-[gd_scene load_steps=12 format=3 uid="uid://d0ttemp8jpsqi"]
+[gd_scene load_steps=12 format=3 uid="uid://bx14tsdutlway"]
 
 [ext_resource type="Script" path="res://Scripts/title-screen.gd" id="1_efilt"]
-[ext_resource type="Texture2D" uid="uid://ccyi1ph1pcx5d" path="res://Assets/UI/startbutton-norm.png" id="3_v7sjd"]
-[ext_resource type="Texture2D" uid="uid://dv4edshw0f3um" path="res://Assets/UI/startbutton-click.png" id="4_u07qb"]
-[ext_resource type="Texture2D" uid="uid://dkiwp48klhp03" path="res://Assets/UI/Background/MainMenu/back1.png" id="5_6d8x4"]
-[ext_resource type="Texture2D" uid="uid://c5vh086tjjiu6" path="res://Assets/UI/startbutton-hover.png" id="5_12cae"]
-[ext_resource type="Texture2D" uid="uid://ftan30kk60ng" path="res://Assets/UI/Background/MainMenu/back2.png" id="6_n371q"]
-[ext_resource type="Texture2D" uid="uid://b8ifnn85rryjv" path="res://Assets/UI/Background/MainMenu/back3.png" id="7_6to53"]
-[ext_resource type="Texture2D" uid="uid://c51y4n4bcsp3h" path="res://Assets/UI/Background/MainMenu/back4.png" id="8_qlako"]
-[ext_resource type="AudioStream" uid="uid://c154g1221guu" path="res://Assets/Sounds/guitar-loop.mp3" id="9_y0bgv"]
+[ext_resource type="Texture2D" uid="uid://c8jk4mfowbofo" path="res://Assets/UI/startbutton-norm.png" id="3_v7sjd"]
+[ext_resource type="Texture2D" uid="uid://v0os2x7b6fpb" path="res://Assets/UI/startbutton-click.png" id="4_u07qb"]
+[ext_resource type="Texture2D" uid="uid://bcswaic4xtu1v" path="res://Assets/UI/Background/MainMenu/back1.png" id="5_6d8x4"]
+[ext_resource type="Texture2D" uid="uid://cu5iwuut7hdjp" path="res://Assets/UI/startbutton-hover.png" id="5_12cae"]
+[ext_resource type="Texture2D" uid="uid://d1qv7gac03bla" path="res://Assets/UI/Background/MainMenu/back2.png" id="6_n371q"]
+[ext_resource type="Texture2D" uid="uid://c1duc5crtl1ss" path="res://Assets/UI/Background/MainMenu/back3.png" id="7_6to53"]
+[ext_resource type="Texture2D" uid="uid://cyhwgciat0gme" path="res://Assets/UI/Background/MainMenu/back4.png" id="8_qlako"]
+[ext_resource type="AudioStream" uid="uid://cgkmaycyf3bw7" path="res://Assets/Sounds/guitar-loop.mp3" id="9_y0bgv"]
 [ext_resource type="Script" path="res://Scripts/menu-music.gd" id="10_s5hfh"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8rvil"]
@@ -78,4 +78,3 @@ autoplay = true
 script = ExtResource("10_s5hfh")
 
 [connection signal="pressed" from="start-button" to="." method="_on_startbutton_pressed"]
-[connection signal="pressed" from="start-button" to="." method="_on_texture_button_pressed"]
