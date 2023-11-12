@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bmq0swlg5c4ub"]
+[gd_scene load_steps=5 format=3 uid="uid://bmq0swlg5c4ub"]
 
 [ext_resource type="Script" path="res://Scripts/level.gd" id="1_1u11t"]
 [ext_resource type="TileSet" uid="uid://byh02g1bhfo0l" path="res://Assets/Tiles/level_set.tres" id="1_4xogo"]
 [ext_resource type="PackedScene" uid="uid://j5wnleimpye6" path="res://Scenes/player.tscn" id="2_j36u0"]
+[ext_resource type="PackedScene" uid="uid://b3eumhjo6nh1k" path="res://Scenes/parallax_background.tscn" id="4_muwkr"]
 
 [node name="LevelT" type="Node2D" node_paths=PackedStringArray("tilemap", "death_zone", "win_zone", "camera")]
 script = ExtResource("1_1u11t")
@@ -54,3 +55,5 @@ remote_path = NodePath("../../Camera2D")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(320, 272)
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("4_muwkr")]
