@@ -1,13 +1,13 @@
 [gd_scene load_steps=21 format=3 uid="uid://b4nrvmaxanhxp"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_qg6o6"]
-[ext_resource type="Texture2D" uid="uid://dak61jwx0ed7u" path="res://Assets/Player/warrior-spritesheet.png" id="2_a27b7"]
-[ext_resource type="AudioStream" uid="uid://qwd1gbtykpq4" path="res://Assets/Sounds/fire-burning.wav" id="3_gmh8l"]
+[ext_resource type="Texture2D" uid="uid://b8ru64qhg7c0x" path="res://Assets/Player/warrior-spritesheet.png" id="2_a27b7"]
+[ext_resource type="AudioStream" uid="uid://cxhnhlioovpia" path="res://Assets/Sounds/fire-burning.wav" id="3_gmh8l"]
 [ext_resource type="Script" path="res://Scripts/fire-sound.gd" id="4_yi5k6"]
-[ext_resource type="AudioStream" uid="uid://cjmj1uysye4eu" path="res://Assets/Sounds/piano-loop.mp3" id="5_dbcip"]
-[ext_resource type="AudioStream" uid="uid://d1klg6ciewa5b" path="res://Assets/Sounds/footstep.ogg" id="6_ucdw5"]
+[ext_resource type="AudioStream" uid="uid://cl5uurjukx1u1" path="res://Assets/Sounds/piano-loop.mp3" id="5_dbcip"]
+[ext_resource type="AudioStream" uid="uid://bavl7r66leq8x" path="res://Assets/Sounds/footstep.ogg" id="6_ucdw5"]
 [ext_resource type="Script" path="res://Scripts/footstep.gd" id="7_5v7tx"]
-[ext_resource type="AudioStream" uid="uid://orjj5rc7xrce" path="res://Assets/Sounds/jump.wav" id="8_157nj"]
+[ext_resource type="AudioStream" uid="uid://uis450ctmty6" path="res://Assets/Sounds/jump.wav" id="8_157nj"]
 
 [sub_resource type="Animation" id="Animation_kcq0v"]
 resource_name = "Dash-Right"
@@ -199,7 +199,7 @@ scale = Vector2(1.3, 1.406)
 texture = ExtResource("2_a27b7")
 hframes = 16
 vframes = 25
-frame = 96
+frame = 48
 
 [node name="Camera2D" type="Camera2D" parent="."]
 visible = false

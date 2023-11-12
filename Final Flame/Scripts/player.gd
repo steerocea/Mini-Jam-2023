@@ -1,17 +1,21 @@
 extends CharacterBody2D
 
+#TODO: Jump buffering
+#TODO: Integrate animations
+#TODO: Walljump knockback input delay
+#TODO: Re-add sliding
+#TODO: Split falling from jumping
+
 @export var speed = 400
 @export var gravity = 30
 @export var jump_force = 700
 @export var wall_jump_force = 150
-@export var friction = 15
 
 enum PlayerState {
 	IDLE,
 	WALKRIGHT,
 	WALKLEFT,
-	RUNRIGHT,
-	RUNLEFT,
+	RUN,
 	JUMP,
 	SLIDE,
 	DEATH,
@@ -20,6 +24,7 @@ enum PlayerState {
 }
 
 var state: PlayerState = PlayerState.IDLE
+var used_state:PlayerState = PlayerState.IDLE
 var horizontal_direction = 0
 var animation_player: AnimationPlayer = null
 var character_sprite: Sprite2D = null
@@ -35,7 +40,8 @@ func _ready():
 	if animation_player == null:
 		print("Error: AnimationPlayer not found.")
 		return
-		
+	animation_player.animation_finished.connect(_on_animation_finished)
+	
 	character_sprite = $Sprite2D  # Adjust the path based on the actual node hierarchy
 	if character_sprite == null:
 		print("Error: Sprite not found.")
@@ -46,109 +52,114 @@ func _ready():
 	
 	footstep_sound.connect("finished", _on_FootstepSound_finished)
 
+
 func _physics_process(delta):
-	if !is_on_floor():
-		if is_on_wall():
-			state = PlayerState.WALLHANG
-			velocity.y = min(velocity.y, 0)  # Stop upward movement on the wall
-			velocity.y += friction  # Apply a slow downward force
-		else:
-			velocity.y += gravity
-		if velocity.y > 1000:
-			velocity.y = 1000
-		if (Input.get_action_strength("walk_right") > 0) and !is_on_wall():
-			if (Input.get_action_strength("sprint") > 0):
-				speed = 400
-			else:
-				speed = 200
-			horizontal_direction = 1
-			character_sprite.scale.x = 1
-			character_sprite.position.x = 15
-		elif (Input.get_action_strength("walk_left") > 0) and !is_on_wall():
-			if (Input.get_action_strength("sprint") > 0):
-				speed = 400
-			else:
-				speed = 200
-			horizontal_direction = -1
-			character_sprite.scale.x = -1
-			character_sprite.position.x = -15
-		elif Input.is_action_just_pressed("jump"):
-			if state == PlayerState.WALLHANG:
-				velocity.y = -jump_force
-				speed = 100
-				horizontal_direction = horizontal_direction * -1
-				state = PlayerState.WALLJUMP
-				jump_sound.play()
-	elif Input.is_action_just_pressed("jump"):
-		if is_on_floor():
-			velocity.y = -jump_force
-			state = PlayerState.JUMP
-			jump_sound.play()
-	#place holder
-	elif Input.is_action_just_pressed("death"):
-		state = PlayerState.DEATH
-	elif Input.get_action_strength("slide") > 0:
-		if is_on_floor():
-			speed = 500
-			state = PlayerState.SLIDE
-	elif ((Input.get_action_strength("walk_left") > 0) && (Input.get_action_strength("run_left") == 0)):
-		if Input.get_action_strength("sprint") > 0:
-			speed = 400
-			state = PlayerState.RUNLEFT
-		else:
-			speed = 200
-			state = PlayerState.WALKLEFT
-		horizontal_direction = -1
-	elif ((Input.get_action_strength("walk_right") > 0) && (Input.get_action_strength("run_right") == 0)):
-		if Input.get_action_strength("sprint") > 0:
-			speed = 400
-			state = PlayerState.RUNRIGHT
-		else:
-			speed = 200
-			state = PlayerState.WALKRIGHT
-		horizontal_direction = 1
-	elif Input.get_action_strength("run_left") > 0:
-		speed = 400
-		horizontal_direction = -1
-		state = PlayerState.RUNLEFT
-	elif Input.get_action_strength("run_right") > 0:
-		speed = 400
-		horizontal_direction = 1
-		state = PlayerState.RUNRIGHT
-	else:
-		if !player_is_dead:
-			speed = 0
-			horizontal_direction = 0
-			state = PlayerState.IDLE
-		
-	velocity.x = speed * horizontal_direction
+	run()
+	#jump does gravity and jumps/walljumps for us: basically handles verticality.
+	jump()
 	move_and_slide()
+
+var input_direction:float = 0
+
+func run():
+	input_direction = 0
+	if Input.is_action_pressed("walk_left"):
+		input_direction -= 1
+	if Input.is_action_pressed("walk_right"):
+		input_direction += 1
+	
+	velocity.x = input_direction*speed
+	
+const coyote_timer:float = 0.3
+var general_coyote_time:float = 0
+var walljump_coyote_time:float = 0
+var walljump_is_right:bool = true
+var has_jump:bool = true
+var has_walljump:bool = true
+
+func jump():
+	#If we're in contact with a wall or floor, refresh jump timers.
+	
+	if is_on_floor():
+		general_coyote_time = 0
+		#only refresh whether we have a jump on touching the ground though.
+		has_jump = true
+		has_walljump = true
+	if is_on_wall() and input_direction != 0:
+		walljump_coyote_time = 0
+		walljump_is_right = get_wall_normal().x > 0
+	if Input.is_action_just_pressed("jump"):
+		if general_coyote_time < coyote_timer and has_jump:
+			velocity.y = -jump_force
+			has_jump = false
+			start_locked_animation("Jump")
+		if walljump_coyote_time < coyote_timer and has_walljump:
+			velocity.y = -jump_force
+			velocity.x = speed * (1 if walljump_is_right else -1)
+			has_walljump = false
+			start_locked_animation("Wall-Jump")
+	
+	else:
+		velocity.y += gravity
+
+func _process(delta):
+	update_timers(delta)
+	update_animations()
+
+func update_timers(delta):
+	general_coyote_time += delta
+	walljump_coyote_time += delta
+	animation_lock_time += delta
+
+var animation_lock_timer:float = 0.1
+var animation_lock_time:float = 0
+var animation_locked:bool = false
+
+#For making sure an animation isn't overwritten for a period of time
+func start_locked_animation(anim_name:String):
+	animation_locked = true
+	animation_player.play(anim_name)
+
+func _on_animation_finished(anim_name:String):
+	print("unlocking")
+	animation_locked = false
+	update_animations()
+
+func update_animations():
+	#Combine facing change with animation state update.
+	if(velocity.x < 0):
+		character_sprite.position.x = -15
+		character_sprite.flip_h = true
+	elif(velocity.x > 0):
+		character_sprite.position.x = 15
+		character_sprite.flip_h = false
+	if animation_locked:
+		return
+	
+	#There are some animations that are activated elsewhere
+	#As they are a result of actions that are best detected there.
+	if is_on_floor():
+		if(velocity.x == 0):
+			state = PlayerState.IDLE
+		else:
+			state = PlayerState.RUN
+	elif is_on_wall() :
+		#We use jump checks here so that if player is adjacent to wall but not holding into it they 
+		#look like they're falling naturally
+		state = PlayerState.WALLHANG
+	else:
+		#midair
+		#TODO FALLING
+		pass
 	
 	match state:
 		PlayerState.IDLE:
 			animation_player.play("Idle")
-		PlayerState.WALKRIGHT:
-			character_sprite.scale.x = 1
-			character_sprite.position.x = 15
-			animation_player.play("Walk-Right")
-		PlayerState.WALKLEFT:
-			character_sprite.scale.x = -1
-			character_sprite.position.x = -15
-			animation_player.play("Walk-Right")
-		PlayerState.RUNRIGHT:
-			character_sprite.scale.x = 1
-			character_sprite.position.x = 15
-			animation_player.play("Run-Right")
-			play_footstep_sound()
-		PlayerState.RUNLEFT:
-			character_sprite.scale.x = -1
-			character_sprite.position.x = -15
+		PlayerState.RUN:
 			animation_player.play("Run-Right")
 			play_footstep_sound()
 		PlayerState.JUMP:
 			animation_player.play("Jump")
-		PlayerState.SLIDE:
-			animation_player.play("Slide-Right")
 		PlayerState.WALLHANG:
 			animation_player.play("Wall-Hang")
 		PlayerState.WALLJUMP:
