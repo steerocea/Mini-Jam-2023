@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://b3eumhjo6nh1k"]
 
-[ext_resource type="Texture2D" uid="uid://cr2xvb5xoniox" path="res://Assets/Backgrounds/BackgroundFarM.png" id="1_66ofb"]
-[ext_resource type="Texture2D" uid="uid://dax3sw2n0cuxq" path="res://Assets/Backgrounds/BackgroundNearestM.png" id="1_fc8gl"]
-[ext_resource type="Texture2D" uid="uid://bm53xkbe6mmo0" path="res://Assets/Backgrounds/BackgroundBluedummy.png" id="1_j68qw"]
+[ext_resource type="Texture2D" uid="uid://cfq8oln64etfc" path="res://Assets/Backgrounds/BackgroundFarM.png" id="1_66ofb"]
+[ext_resource type="Texture2D" uid="uid://day5mu68jy4jc" path="res://Assets/Backgrounds/BackgroundNearestM.png" id="1_fc8gl"]
+[ext_resource type="Texture2D" uid="uid://phwvf6kw4c1d" path="res://Assets/Backgrounds/BackgroundBluedummy.png" id="1_j68qw"]
 [ext_resource type="Texture2D" uid="uid://d1ldjlfpamysh" path="res://Assets/Backgrounds/BackgroundMediumM.png" id="2_u3khp"]
-[ext_resource type="Texture2D" uid="uid://cfwe63nffasv4" path="res://Assets/Backgrounds/BackgroundNearM.png" id="3_xvevv"]
-[ext_resource type="Texture2D" uid="uid://w56lt85bnk6b" path="res://Assets/Backgrounds/BackgroundGreendummy.png" id="4_myipw"]
+[ext_resource type="Texture2D" uid="uid://dg1qob5ya1ic3" path="res://Assets/Backgrounds/BackgroundNearM.png" id="3_xvevv"]
+[ext_resource type="Texture2D" uid="uid://b1k12u4gj15wx" path="res://Assets/Backgrounds/BackgroundGreendummy.png" id="4_myipw"]
 
 [node name="ParallaxBackground" type="ParallaxBackground"]
 
