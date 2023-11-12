@@ -1,8 +1,7 @@
 extends CharacterBody2D
 
-#TODO: Jump Buffer
-#TODO: Coyote Timer
 #TODO: Integrate animations
+#TODO: Walljump knockback input delay
 
 @export var speed = 400
 @export var gravity = 30
@@ -112,11 +111,13 @@ func run():
 const coyote_timer:float = 0.3
 var general_coyote_time:float = 0
 var walljump_coyote_time:float = 0
+var walljump_is_right:bool = true
 var has_jump:bool = true
 var has_walljump:bool = true
 
 func jump():
 	#If we're in contact with a wall or floor, refresh jump timers.
+	
 	if is_on_floor():
 		general_coyote_time = 0
 		#only refresh whether we have a jump on touching the ground though.
@@ -124,13 +125,14 @@ func jump():
 		has_walljump = true
 	if is_on_wall() and input_direction != 0:
 		walljump_coyote_time = 0
+		walljump_is_right = get_wall_normal().x > 0
 	if Input.is_action_just_pressed("jump"):
 		if general_coyote_time < coyote_timer and has_jump:
 			velocity.y = -jump_force
 			has_jump = false
 		if walljump_coyote_time < coyote_timer and has_walljump:
 			velocity.y = -jump_force
-			velocity.x = -input_direction*speed
+			velocity.x = speed * (1 if walljump_is_right else -1)
 			has_walljump = false
 	
 	else:
