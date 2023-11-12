@@ -17,7 +17,7 @@ script = ExtResource("1_xofpx")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(574, 320)
-scale = Vector2(1.00496, 1.00496)
+scale = Vector2(1.0578, 1.0578)
 texture = ExtResource("1_6mcem")
 
 [node name="menu-button" type="TextureButton" parent="."]

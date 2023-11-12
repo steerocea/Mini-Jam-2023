@@ -114,7 +114,9 @@ func _on_win_zone_entered(area):
 		var current_scene_path = get_tree().get_current_scene()
 		var current_scene_name = current_scene_path.name
 		
-		if(current_scene_name == "level-2"):
+		if(current_scene_name == "level-1"):
+			SceneDictionary.change_scene("level-2")
+		elif(current_scene_name == "level-2"):
 			SceneDictionary.change_scene("level-3")
 		elif(current_scene_name == "level-3"):
 			SceneDictionary.change_scene("level-4")
