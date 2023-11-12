@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b3eumhjo6nh1k" path="res://Scenes/parallax_background.tscn" id="4_lbsn0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2xliq"]
-size = Vector2(854.572, 402)
+size = Vector2(421.714, 402)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c7cqs"]
 size = Vector2(71.2328, 14.2396)
@@ -50,7 +50,12 @@ layer_3/tile_data = PackedInt32Array(393272, 786433, 8, 458808, 786433, 8, 52434
 scale = Vector2(0.5, 0.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level_Tiles/Death_Zone"]
-position = Vector2(2808, 2766)
+position = Vector2(2390, 3000)
+scale = Vector2(7, 1)
+shape = SubResource("RectangleShape2D_2xliq")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Level_Tiles/Death_Zone"]
+position = Vector2(6138, 3010)
 scale = Vector2(7, 1)
 shape = SubResource("RectangleShape2D_2xliq")
 
