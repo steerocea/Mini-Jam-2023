@@ -9,3 +9,6 @@ func _on_startbutton_pressed():
 	GlobalTimer.time_reset()
 	GlobalTimer.time_start()
 	SceneDictionary.change_scene("level-1")
+	
+func _on_htpbutton_pressed():
+	SceneDictionary.change_scene("how-to-play")

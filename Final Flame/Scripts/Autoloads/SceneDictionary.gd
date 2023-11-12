@@ -7,6 +7,7 @@ var scene_dictionary:Dictionary = {
 	"title": preload("res://Scenes/title-screen.tscn"),
 	"game-over": preload("res://Scenes/game-over.tscn"),
 	"you-win": preload("res://Scenes/you-win.tscn"),
+	"how-to-play": preload("res://Scenes/how-to-play.tscn"),
 	"level-1": preload("res://Scenes/Levels/level_t.tscn"),
 	"level-2": preload("res://Scenes/Levels/level_2.tscn"),
 	"level-3": preload("res://Scenes/Levels/level_3.tscn"),

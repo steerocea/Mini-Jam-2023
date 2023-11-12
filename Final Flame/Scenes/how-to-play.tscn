@@ -1,0 +1,87 @@
+[gd_scene load_steps=12 format=3 uid="uid://cpisd131uwkap"]
+
+[ext_resource type="Script" path="res://Scripts/game-over.gd" id="1_ydj53"]
+[ext_resource type="Texture2D" uid="uid://cj3soq175441f" path="res://Assets/UI/howtoplay.png" id="2_a8b4m"]
+[ext_resource type="Texture2D" uid="uid://h4fj18hbwv5y" path="res://Assets/UI/menubutton-norm.png" id="3_k81yj"]
+[ext_resource type="Texture2D" uid="uid://cg4njmqfu0ho3" path="res://Assets/UI/menubutton-pressed.png" id="4_ep4qy"]
+[ext_resource type="Texture2D" uid="uid://bfqlyt838fa6y" path="res://Assets/UI/menubutton-hover.png" id="5_crvhf"]
+[ext_resource type="AudioStream" uid="uid://c154g1221guu" path="res://Assets/Sounds/guitar-loop.mp3" id="6_hhdt7"]
+[ext_resource type="Texture2D" uid="uid://b85f6egaprmnx" path="res://Assets/UI/Background/Underwater/far.png" id="7_382aw"]
+[ext_resource type="Texture2D" uid="uid://bwh6boq8dqemu" path="res://Assets/UI/Background/Underwater/sand.png" id="8_cefke"]
+[ext_resource type="Texture2D" uid="uid://cxnw38famhp55" path="res://Assets/UI/Background/Underwater/foregound-merged.png" id="9_nna57"]
+[ext_resource type="Texture2D" uid="uid://d2suvrgga1su1" path="res://Assets/UI/Background/Underwater/foreground-1.png" id="10_0w54f"]
+[ext_resource type="Texture2D" uid="uid://fu6stcykowgp" path="res://Assets/UI/Background/Underwater/foreground-2.png" id="11_aeesy"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ydj53")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(574, 287)
+scale = Vector2(0.857331, 0.857331)
+texture = ExtResource("2_a8b4m")
+
+[node name="menu-button" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 418.0
+offset_top = 517.0
+offset_right = 668.0
+offset_bottom = 592.0
+scale = Vector2(1.24663, 1.24663)
+texture_normal = ExtResource("3_k81yj")
+texture_pressed = ExtResource("4_ep4qy")
+texture_hover = ExtResource("5_crvhf")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_hhdt7")
+volume_db = -38.414
+autoplay = true
+
+[node name="Node2D" type="Node2D" parent="."]
+scale = Vector2(1.21093, 1.21093)
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Node2D"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Node2D/ParallaxBackground"]
+position = Vector2(590, 320)
+scale = Vector2(3.8, 3.8)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/ParallaxBackground/ParallaxLayer"]
+scale = Vector2(2.10815, 2.69047)
+texture = ExtResource("7_382aw")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="Node2D/ParallaxBackground"]
+position = Vector2(590, 320)
+scale = Vector2(3.8, 3.8)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/ParallaxBackground/ParallaxLayer2"]
+scale = Vector2(1.59115, 1.59115)
+texture = ExtResource("8_cefke")
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="Node2D/ParallaxBackground"]
+position = Vector2(590, 320)
+scale = Vector2(3.8, 3.8)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/ParallaxBackground/ParallaxLayer3"]
+texture = ExtResource("9_nna57")
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="Node2D/ParallaxBackground"]
+position = Vector2(590, 320)
+scale = Vector2(3.8, 3.8)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/ParallaxBackground/ParallaxLayer4"]
+texture = ExtResource("10_0w54f")
+
+[node name="ParallaxLayer5" type="ParallaxLayer" parent="Node2D/ParallaxBackground"]
+position = Vector2(590, 320)
+scale = Vector2(3.8, 3.8)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/ParallaxBackground/ParallaxLayer5"]
+texture = ExtResource("11_aeesy")
+
+[connection signal="pressed" from="menu-button" to="." method="_on_menubutton_pressed"]

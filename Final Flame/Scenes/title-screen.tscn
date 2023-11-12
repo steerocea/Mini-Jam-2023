@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bx14tsdutlway"]
+[gd_scene load_steps=15 format=3 uid="uid://bx14tsdutlway"]
 
 [ext_resource type="Script" path="res://Scripts/title-screen.gd" id="1_efilt"]
 [ext_resource type="Texture2D" uid="uid://ccyi1ph1pcx5d" path="res://Assets/UI/startbutton-norm.png" id="3_v7sjd"]
@@ -10,6 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://c51y4n4bcsp3h" path="res://Assets/UI/Background/MainMenu/back4.png" id="8_qlako"]
 [ext_resource type="AudioStream" uid="uid://c154g1221guu" path="res://Assets/Sounds/guitar-loop.mp3" id="9_y0bgv"]
 [ext_resource type="Script" path="res://Scripts/menu-music.gd" id="10_s5hfh"]
+[ext_resource type="Texture2D" uid="uid://cr4shqpev0swm" path="res://Assets/UI/htp_norm.png" id="11_60hiy"]
+[ext_resource type="Texture2D" uid="uid://cv3mpd4yfitn4" path="res://Assets/UI/htp_clicked.png" id="12_ot6xh"]
+[ext_resource type="Texture2D" uid="uid://chdqpcaarcw3v" path="res://Assets/UI/htp_hover.png" id="13_whsdc"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8rvil"]
 load_path = "res://.godot/imported/finalflame-title.png-5cf1c4c011e3c465835e2ade24a4c465.ctex"
@@ -30,9 +33,9 @@ texture = SubResource("CompressedTexture2D_8rvil")
 
 [node name="start-button" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 399.0
+offset_left = 147.0
 offset_top = 430.0
-offset_right = 649.0
+offset_right = 397.0
 offset_bottom = 505.0
 scale = Vector2(1.4701, 1.4701)
 texture_normal = ExtResource("3_v7sjd")
@@ -77,4 +80,15 @@ volume_db = -21.55
 autoplay = true
 script = ExtResource("10_s5hfh")
 
+[node name="htp-button" type="TextureButton" parent="."]
+offset_left = 658.0
+offset_top = 430.0
+offset_right = 908.0
+offset_bottom = 505.0
+scale = Vector2(1.4701, 1.4701)
+texture_normal = ExtResource("11_60hiy")
+texture_pressed = ExtResource("12_ot6xh")
+texture_hover = ExtResource("13_whsdc")
+
 [connection signal="pressed" from="start-button" to="." method="_on_startbutton_pressed"]
+[connection signal="pressed" from="htp-button" to="." method="_on_htpbutton_pressed"]
