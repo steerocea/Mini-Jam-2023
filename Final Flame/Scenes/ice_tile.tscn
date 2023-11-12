@@ -1,14 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://dww32252amosa"]
+[gd_scene load_steps=6 format=3 uid="uid://ggetoyksn6j8"]
 
 [ext_resource type="Script" path="res://Scripts/ice_tile.gd" id="1_bx6qf"]
 [ext_resource type="Texture2D" uid="uid://bra2tk5bh0nai" path="res://Assets/Tiles/Standalone_Ice_Tile.png" id="1_d2vp2"]
-[ext_resource type="AudioStream" uid="uid://dmfiwgfxnqhi0" path="res://Assets/Sounds/ice-crack.wav" id="3_38prp"]
+[ext_resource type="AudioStream" uid="uid://bjjxc56tfnfmi" path="res://Assets/Sounds/ice-crack.wav" id="3_38prp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gpvyc"]
-size = Vector2(32, 32)
+size = Vector2(16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hl07f"]
-size = Vector2(36, 36)
+size = Vector2(18, 18)
 
 [node name="Ice_Tile" type="Node2D"]
 script = ExtResource("1_bx6qf")
