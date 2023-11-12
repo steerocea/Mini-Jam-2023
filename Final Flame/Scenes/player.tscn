@@ -61,7 +61,6 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_n0a28"]
 resource_name = "Jump"
 length = 1.3
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -200,7 +199,7 @@ scale = Vector2(1.3, 1.406)
 texture = ExtResource("2_a27b7")
 hframes = 16
 vframes = 25
-frame = 48
+frame = 96
 
 [node name="Camera2D" type="Camera2D" parent="."]
 visible = false
