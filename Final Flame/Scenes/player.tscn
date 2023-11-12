@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://b4nrvmaxanhxp"]
+[gd_scene load_steps=23 format=3 uid="uid://b4nrvmaxanhxp"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_qg6o6"]
 [ext_resource type="Texture2D" uid="uid://b8ru64qhg7c0x" path="res://Assets/Player/warrior-spritesheet.png" id="2_a27b7"]
@@ -173,12 +173,45 @@ tracks/0/keys = {
 "values": [352, 353, 354, 113, 114, 128, 129, 130, 129, 128, 114, 113]
 }
 
+[sub_resource type="Animation" id="Animation_k04pm"]
+resource_name = "Fall"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [114, 128, 129, 130]
+}
+
+[sub_resource type="Animation" id="Animation_3dwvg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [128]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6ukbh"]
 _data = {
 "Dash-Right": SubResource("Animation_kcq0v"),
 "Death": SubResource("Animation_pqnbb"),
+"Fall": SubResource("Animation_k04pm"),
 "Idle": SubResource("Animation_qst22"),
 "Jump": SubResource("Animation_n0a28"),
+"RESET": SubResource("Animation_3dwvg"),
 "Roll-Right": SubResource("Animation_gckiy"),
 "Run-Right": SubResource("Animation_4iji6"),
 "Slide-Right": SubResource("Animation_76tnk"),
@@ -199,7 +232,7 @@ scale = Vector2(1.3, 1.406)
 texture = ExtResource("2_a27b7")
 hframes = 16
 vframes = 25
-frame = 48
+frame = 128
 
 [node name="Camera2D" type="Camera2D" parent="."]
 visible = false
